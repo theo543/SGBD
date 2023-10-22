@@ -1,0 +1,53 @@
+<mxfile host="Electron" modified="2023-10-22T19:59:34.768Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="Rgpi1qVvAin0FXnrpQpg" version="22.0.3" type="device">
+  <diagram name="Page-1" id="K7GGyE9mfa9EHH289KWn">
+    <mxGraphModel dx="1658" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DwRfLZ-1oQ1YcIXO67qD-16" value="&lt;div&gt;RETETA&lt;/div&gt;&lt;div&gt;id_reteta#&lt;/div&gt;&lt;div&gt;nume&lt;/div&gt;&lt;div&gt;pret&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="368.12" y="840" width="116.37" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LTqqhIScXa48sC5BbTXQ-40" value="&lt;div&gt;COMANDA_include_&lt;/div&gt;&lt;div&gt;RETETA&lt;/div&gt;&lt;div&gt;id_comanda#&lt;/div&gt;&lt;div&gt;id_reteta#&lt;br&gt;&lt;/div&gt;&lt;div&gt;nr&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=1 2;" parent="1" vertex="1">
+          <mxGeometry x="363.3" y="520" width="126" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="LTqqhIScXa48sC5BbTXQ-42" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="LTqqhIScXa48sC5BbTXQ-40" edge="1" target="df_7gGYzq2t7CDCpT4Jm-241">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="487.24" y="583.3" as="sourcePoint" />
+            <mxPoint x="487.24" y="343.3" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTqqhIScXa48sC5BbTXQ-45" value="&lt;u&gt;&lt;b&gt;X&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="411" y="506.29999999999995" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LTqqhIScXa48sC5BbTXQ-54" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="LTqqhIScXa48sC5BbTXQ-40" target="DwRfLZ-1oQ1YcIXO67qD-16" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="360.24" y="653.3" as="sourcePoint" />
+            <mxPoint x="359.24" y="703.3" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTqqhIScXa48sC5BbTXQ-55" value="&lt;u&gt;&lt;b&gt;X&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="411" y="615.3" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="df_7gGYzq2t7CDCpT4Jm-241" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="331" y="200.3" width="190.24" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="df_7gGYzq2t7CDCpT4Jm-243" value="&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;COMANDA&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;id_comanda#&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;id_casier&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;id_restaurant&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;data_comanda&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="350" y="260.3" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="df_7gGYzq2t7CDCpT4Jm-244" value="&lt;div&gt;LIVRARE&lt;/div&gt;&lt;div&gt;id_comanda#&lt;/div&gt;&lt;div&gt;adresa&lt;br&gt;&lt;/div&gt;&lt;div&gt;cost&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="441.24" y="245.3" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="df_7gGYzq2t7CDCpT4Jm-245" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.789;entryY=-0.002;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="df_7gGYzq2t7CDCpT4Jm-244" target="df_7gGYzq2t7CDCpT4Jm-241" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="460" y="196.3" as="sourcePoint" />
+            <mxPoint x="510" y="146.3" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="df_7gGYzq2t7CDCpT4Jm-247" value="&lt;u&gt;&lt;b&gt;X&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="465.24" y="229.3" width="30" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

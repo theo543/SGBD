@@ -21,7 +21,6 @@ DROP TABLE INGREDIENT_provoaca_ALERGIE CASCADE CONSTRAINTS;
 DROP TABLE RETETA_contine_INGREDIENT CASCADE CONSTRAINTS;
 DROP TABLE COMANDA_include_RETETA CASCADE CONSTRAINTS;
 
-
 CREATE SEQUENCE ID_ORAS_SEQ START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE ID_RESTAURANT_SEQ START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE ID_ANGAJAT_SEQ START WITH 1 INCREMENT BY 1;
@@ -29,6 +28,7 @@ CREATE SEQUENCE ID_INGREDIENT_SEQ START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE ID_RETETA_SEQ START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE ID_ALERGIE_SEQ START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE ID_COMANDA_SEQ START WITH 1 INCREMENT BY 1;
+
 CREATE TABLE ORAS (
   id_oras NUMBER(10) DEFAULT ID_ORAS_SEQ.nextval PRIMARY KEY,
   nume VARCHAR2(50) NOT NULL
@@ -96,6 +96,7 @@ CREATE TABLE LIVRARE (
   pret NUMBER(10,2) NOT NULL,
   FOREIGN KEY (id_comanda) REFERENCES COMANDA(id_comanda) ON DELETE CASCADE
 );
+
 CREATE TABLE INGREDIENT_provoaca_ALERGIE (
   id_ingredient NUMBER(10) NOT NULL,
   id_alergie NUMBER(10) NOT NULL,
@@ -113,6 +114,7 @@ CREATE TABLE RETETA_contine_INGREDIENT (
 CREATE TABLE COMANDA_include_RETETA (
   id_comanda NUMBER(10) NOT NULL,
   id_reteta NUMBER(10) NOT NULL,
+  nr NUMBER(10) NOT NULL CHECK (nr != 0),
   PRIMARY KEY (id_comanda, id_reteta)
 );
 
@@ -159,12 +161,6 @@ INSERT INTO RETETA (nume, pret) VALUES ('cartofi prajiti', 10.99);
 INSERT INTO RETETA (nume, pret) VALUES ('paine proaspata', 5.99);
 INSERT INTO RETETA (nume, pret) VALUES ('cartofi prajiti cu sos', 12.99);
 
-
-
-
-
-
-
 INSERT INTO RETETA_contine_INGREDIENT (id_reteta, id_ingredient) VALUES (1, 1);
 INSERT INTO RETETA_contine_INGREDIENT (id_reteta, id_ingredient) VALUES (1, 3);
 INSERT INTO RETETA_contine_INGREDIENT (id_reteta, id_ingredient) VALUES (1, 4);
@@ -191,18 +187,7 @@ INSERT INTO RETETA_contine_INGREDIENT (id_reteta, id_ingredient) VALUES (5, 8);
 INSERT INTO RETETA_contine_INGREDIENT (id_reteta, id_ingredient) VALUES (5, 6);
 
 
-
-
-
-
-
-
-
-
-
-
--- GENERATED WITH generate_data.py
-
+-- Randomly generated data
 
 
 INSERT INTO RESTAURANT (id_oras, data_deschidere) VALUES (1, TO_DATE('2020-01-01', 'YYYY-MM-DD'));
@@ -249,75 +234,75 @@ INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES (18, NULL);
 INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (5, 16, 'BUCATAR', 'Dobre Claudiu', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
 INSERT INTO BUCATAR (id_angajat, data_antrenament_de_siguranta) VALUES (19, NULL);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (1, 3);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (1, 2);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (1, 3);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (1, 'Str. Nica nr. 24 bl. 40', 20);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (1, 2, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (1, 3, 1);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (1, 'Str. Ilie nr. 79', 17);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (1, 3);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (2, 4);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (2, 1);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (2, 'Str. Iacob nr. 20 bl. 6', 18);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (2, 1, 2);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (2, 'Str. Dumitrescu nr. 5 bl. 45', 18);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (1, 3);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (3, 4);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (3, 3);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (3, 5);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (3, 'Str. Dumitrache nr. 87', 19);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (3, 4, 3);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (3, 3, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (3, 5, 3);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (3, 'Str. Duma nr. 54', 17);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (1, 3);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (4, 4);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (4, 5);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (4, 3, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (4, 1, 2);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (4, 'Str. Alexa nr. 76', 13);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (2, 7);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (5, 5);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (5, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (5, 3, 1);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (5, 'Str. Tudose nr. 22', 16);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (2, 7);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (6, 3);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (6, 2);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (6, 'Str. Matei nr. 94', 11);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (6, 1, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (6, 5, 3);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (6, 4, 2);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (6, 3, 2);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (6, 'Str. Marin nr. 16 bl. 39', 19);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (2, 7);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (7, 2);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (7, 3);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (7, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (7, 4, 1);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (3, 11);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (8, 1);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (8, 5);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (8, 4);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (8, 3);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (8, 'Str. Gheorghita nr. 82 bl. 2', 11);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (8, 5, 1);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (8, 'Str. Paraschiv nr. 92 bl. 31', 13);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (3, 11);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (9, 2);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (9, 1);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (9, 5);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (9, 'Str. Gavrila nr. 15 bl. 39', 10);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (9, 1, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (9, 5, 2);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (9, 3, 1);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (3, 11);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (10, 2);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (10, 'Str. Sabau nr. 27 bl. 44', 10);
-INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (3, 11);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (11, 4);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (11, 1);
-INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (3, 11);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (12, 2);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (12, 'Str. Apetrei nr. 39', 16);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (10, 2, 1);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (4, 14);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (13, 5);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (11, 2, 2);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (11, 1, 1);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (11, 'Str. Mitroi nr. 13', 13);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (4, 14);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (14, 5);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (14, 'Str. Ichim nr. 26', 15);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (12, 3, 3);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (12, 4, 2);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (12, 'Str. Olaru nr. 99 bl. 44', 12);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (4, 14);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (15, 4);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (15, 2);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (15, 3);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (15, 'Str. Barbu nr. 87 bl. 11', 15);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (13, 2, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (13, 3, 2);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (13, 4, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (13, 5, 2);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (13, 'Str. Stoica nr. 61', 19);
+INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (4, 14);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (14, 5, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (14, 3, 3);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (14, 4, 2);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (14, 2, 1);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (14, 'Str. Sandor nr. 89 bl. 30', 11);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 17);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (16, 5);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (15, 1, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (15, 3, 3);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (15, 5, 1);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 17);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (17, 2);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (17, 1);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (17, 5);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (16, 3, 2);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (16, 5, 2);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (16, 'Str. Burlacu nr. 50', 20);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 17);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (18, 5);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (18, 3);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (17, 1, 2);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (17, 'Str. Militaru nr. 21 bl. 15', 20);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 17);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (19, 3);
-INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES (19, 2);
-INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (19, 'Str. Ganea nr. 95 bl. 22', 10);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (18, 4, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (18, 5, 1);
 SELECT COUNT(*) FROM ORAS;
 SELECT COUNT(*) FROM RESTAURANT;
 SELECT COUNT(*) FROM JOB_are_SALARIU;

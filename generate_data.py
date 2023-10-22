@@ -69,7 +69,8 @@ def main():
         COMANDA_ID_SEQ += 1
         sql_code += f"INSERT INTO COMANDA (id_restaurant, id_casier) VALUES ({id_restaurant}, {id_casier});\n"
         for reteta in random.sample(range(1, nr_retete + 1), k=random.choice([1, 1, 2, 2, 2, 3, 4])):
-            sql_code += f'INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES ({COMANDA_ID_SEQ}, {reteta});\n'
+            nr = random.choice([1, 1, 1, 1, 2, 2, 3])
+            sql_code += f'INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES ({COMANDA_ID_SEQ}, {reteta}, {nr});\n'
         if random.choice([True, False]):
             adresa = f"Str. {random.choice(nume)} nr. {random.randint(1, 100)}"
             if random.choice([True, False]):
