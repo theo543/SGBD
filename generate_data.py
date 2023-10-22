@@ -15,13 +15,10 @@ def main():
 
     ANGAJAT_ID_SEQ = 0
     RESTAURANT_ID_SEQ = 0
-    FURNIZORI_ID_SEQ = 0
     CONTURI_ID_SEQ = 0
     COMANDA_ID_SEQ = 0
 
     nr_retete = 5
-    nr_meniuri = 5
-    nr_ingrediente = 8
     nr_orase = 5
 
     def insert_random_employee(id_restaurant, manageri, job_cod) -> int:
@@ -33,91 +30,59 @@ def main():
         sql_code += f"INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES ({id_restaurant}, {id_angajator}, '{job_cod}', '{random.choice(nume)} {random.choice(prenume)}', {start_date});\n"
         return ANGAJAT_ID_SEQ
 
-    RESTAURANT : list[tuple[str, int]] = []
+    RESTAURANT : list[int] = []
     MANAGER = {}
-    CASIER = {}
-    BUCATAR = {}
-    FURNIZORI = {}
-    CONTURI : list[tuple[int, int]] = []
-    RESTAURANT_cumpara_INGREDIENT_de_la_FURNIZOR = {}
+    CASIER  = {}
 
-    while len(CONTURI) < 20:
-        CONTURI_ID_SEQ += 1
-        email = random.choice(prenume).lower() + random.choice(nume).lower() + "@gmail.com"
-        pwd_hash = "".join([random.choice("0123456789abcdef") for _ in range(50)])
-        id_oras = random.randint(1, nr_orase)
-        adresa_livrare = f'Strada {random.choice(nume)} Nr. {random.randint(1, 100)}'
-        CONTURI.append((CONTURI_ID_SEQ, id_oras))
-        sql_code += f"INSERT INTO CONT (email, pwd_hash, id_oras, adresa_livrare) VALUES ('{email}', '{pwd_hash}', {id_oras}, '{adresa_livrare}');\n"
-
-
-    while len(FURNIZORI) < 20:
-        FURNIZORI_ID_SEQ += 1
-        FURNIZORI[FURNIZORI_ID_SEQ] = []
-        furnizor = FURNIZORI[FURNIZORI_ID_SEQ]
-        sql_code += f"INSERT INTO FURNIZOR (nume) VALUES ('{random.choice(nume)} SRL');\n"
-        for ing in range(nr_ingrediente):
-            if random.randint(0, 5) == 0: continue
-            furnizor.append(ing + 1)
-            sql_code += f"INSERT INTO FURNIZOR_ofera_INGREDIENT (id_furnizor, id_ingredient, pret) VALUES ({FURNIZORI_ID_SEQ}, {ing + 1}, {random.randint(1, 100)});\n"
-
-    while len(RESTAURANT) < 30:
+    for i in range(5):
         RESTAURANT_ID_SEQ += 1
-        id_oras = random.randint(1, nr_orase)
-        RESTAURANT.append((RESTAURANT_ID_SEQ, id_oras))
+        id_oras = i + 1
+        RESTAURANT.append(RESTAURANT_ID_SEQ)
         sql_code += f"INSERT INTO RESTAURANT (id_oras, data_deschidere) VALUES ({id_oras}, {start_date});\n"
         MANAGER[RESTAURANT_ID_SEQ] = []
         CASIER[RESTAURANT_ID_SEQ] = []
-        BUCATAR[RESTAURANT_ID_SEQ] = []
         manager = MANAGER[RESTAURANT_ID_SEQ]
         casier = CASIER[RESTAURANT_ID_SEQ]
-        bucatar = BUCATAR[RESTAURANT_ID_SEQ]
-        for _ in range(random.randint(2, 3)):
+        for i in range(random.randint(1, 2)):
             id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "MANAGER")
-            autorizat_sa_angajeze = random.choice([1, 1, 0])
+            autorizat_sa_angajeze = (i == 1)
             sql_code += f"INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES ({id_angajat}, {autorizat_sa_angajeze});\n"
-            if autorizat_sa_angajeze == 1: manager.append(id_angajat)
+            if autorizat_sa_angajeze == 1:
+                manager.append(id_angajat)
         casa_de_marcat = 0
-        for _ in range (random.randint(1, 6)):
+        for i in range (random.randint(1, 2)):
             id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "CASIER")
             nr_casa_de_marcat = "NULL"
-            if random.randint(0, 1) == 1:
+            if i == 1:
                 casa_de_marcat += 1
                 nr_casa_de_marcat = casa_de_marcat
             sql_code += f"INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES ({id_angajat}, {nr_casa_de_marcat});\n"
-            casier.append(id_angajat)
-        for _ in range (random.randint(2, 6)):
+            if nr_casa_de_marcat != "NULL":
+                casier.append(id_angajat)
+        for _ in range (random.randint(1, 1)):
             id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "BUCATAR")
             data_antrenament_de_siguranta = random.choice([start_date, "NULL"])
             sql_code += f"INSERT INTO BUCATAR (id_angajat, data_antrenament_de_siguranta) VALUES ({id_angajat}, {data_antrenament_de_siguranta});\n"
-            bucatar.append(id_angajat)
-        for month in range(1, 6):
-            date_code = f"TO_DATE('2020-{month}-01', 'YYYY-MM-DD')"
-            for ingredient in range(nr_ingrediente):
-                if ingredient == 0 and random.randint(0, 1) == 1: continue # sometimes skip the first ingredient
-                suplinitori_posibili = [x for x in FURNIZORI.keys() if ingredient + 1 in FURNIZORI[x]]
-                if len(suplinitori_posibili) == 0: raise Exception("No suppliers for ingredient")
-                id_furnizor = random.choice(suplinitori_posibili)
-                sql_code += f"INSERT INTO RESTAURANT_cumpara_INGREDIENT_de_la_FURNIZOR (id_restaurant, id_ingredient, id_furnizor, data_comanda) VALUES ({RESTAURANT_ID_SEQ}, {ingredient + 1}, {id_furnizor}, {date_code});\n"
 
-    for (cont, id_oras) in CONTURI:
-        for _ in range(50):
-            restaurante_in_oras = [x for x in RESTAURANT if x[1] == id_oras]
-            if len(restaurante_in_oras) == 0: raise Exception("No restaurants in city")
-            id_restaurant = random.choice(restaurante_in_oras)[0]
-            comanda_via_casier = random.choice([1, 0, 0])
-            id_casier = "NULL" if not comanda_via_casier else random.choice(CASIER[id_restaurant])
-            id_cont = "NULL" if comanda_via_casier else f"'{cont}'"
-            COMANDA_ID_SEQ += 1
-            sql_code += f"INSERT INTO COMANDA (id_restaurant, id_casier, id_cont) VALUES ({id_restaurant}, {id_casier}, {id_cont});\n"
-            for meniu in range(1, nr_meniuri + 1):
-                if random.randint(0, 1) == 0: continue
-                sql_code += f'INSERT INTO COMANDA_include_MENIU (id_comanda, id_meniu) VALUES ({COMANDA_ID_SEQ}, {meniu});\n'
-            for reteta in range(1, nr_retete + 1):
-                if random.randint(0, 1) == 0: continue
-                sql_code += f'INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES ({COMANDA_ID_SEQ}, {reteta});\n'
+    def random_comanda(id_restaurant, id_casier):
+        nonlocal COMANDA_ID_SEQ
+        nonlocal sql_code
+        COMANDA_ID_SEQ += 1
+        sql_code += f"INSERT INTO COMANDA (id_restaurant, id_casier) VALUES ({id_restaurant}, {id_casier});\n"
+        for reteta in random.choices(range(1, nr_retete + 1), k=random.choice([1, 1, 2, 2, 2, 3, 4])):
+            sql_code += f'INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES ({COMANDA_ID_SEQ}, {reteta});\n'
+        if random.choice([True, False]):
+            adresa = f"Str. {random.choice(nume)} nr. {random.randint(1, 100)}"
+            if random.choice([True, False]):
+                adresa += f" bl. {random.randint(1, 50)}"
+            cost = random.randint(10, 20)
+            sql_code += f"INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES ({COMANDA_ID_SEQ}, '{adresa}', {cost});\n"
 
-    TABELE = ['ORAS', 'RESTAURANT', 'ANGAJAT', 'CASIER', 'BUCATAR', 'MANAGER', 'INGREDIENT', 'RETETA', 'MENIU', 'ALERGIE', 'CONT', 'COMANDA', 'FURNIZOR', 'JOB_are_SALARIU', 'INGREDIENT_provoaca_ALERGIE', 'RETETA_contine_INGREDIENT', 'MENIU_contine_RETETA', 'FURNIZOR_ofera_INGREDIENT', 'RESTAURANT_cumpara_INGREDIENT_de_la_FURNIZOR', 'COMANDA_include_MENIU', 'COMANDA_include_RETETA']
+    for i in RESTAURANT:
+        for c in CASIER[i]:
+            for _ in range(random.choice([3, 3, 4, 5])):
+                random_comanda(i, c)
+    TABELE = ['ORAS', 'RESTAURANT', 'JOB_are_SALARIU', 'ANGAJAT', 'CASIER', 'BUCATAR', 'MANAGER', 'INGREDIENT', 'RETETA', 'ALERGIE', 'COMANDA', 'LIVRARE', 'INGREDIENT_provoaca_ALERGIE', 'RETETA_contine_INGREDIENT', 'COMANDA_include_RETETA']
     for table in TABELE:
         sql_code += f"SELECT COUNT(*) FROM {table};\n"
 
