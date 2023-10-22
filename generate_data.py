@@ -15,7 +15,6 @@ def main():
 
     ANGAJAT_ID_SEQ = 0
     RESTAURANT_ID_SEQ = 0
-    CONTURI_ID_SEQ = 0
     COMANDA_ID_SEQ = 0
 
     nr_retete = 5
@@ -45,7 +44,7 @@ def main():
         casier = CASIER[RESTAURANT_ID_SEQ]
         for i in range(random.randint(1, 2)):
             id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "MANAGER")
-            autorizat_sa_angajeze = (i == 1)
+            autorizat_sa_angajeze = int(i == 0)
             sql_code += f"INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES ({id_angajat}, {autorizat_sa_angajeze});\n"
             if autorizat_sa_angajeze == 1:
                 manager.append(id_angajat)
@@ -53,7 +52,7 @@ def main():
         for i in range (random.randint(1, 2)):
             id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "CASIER")
             nr_casa_de_marcat = "NULL"
-            if i == 1:
+            if i == 0:
                 casa_de_marcat += 1
                 nr_casa_de_marcat = casa_de_marcat
             sql_code += f"INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES ({id_angajat}, {nr_casa_de_marcat});\n"
@@ -69,7 +68,7 @@ def main():
         nonlocal sql_code
         COMANDA_ID_SEQ += 1
         sql_code += f"INSERT INTO COMANDA (id_restaurant, id_casier) VALUES ({id_restaurant}, {id_casier});\n"
-        for reteta in random.choices(range(1, nr_retete + 1), k=random.choice([1, 1, 2, 2, 2, 3, 4])):
+        for reteta in random.sample(range(1, nr_retete + 1), k=random.choice([1, 1, 2, 2, 2, 3, 4])):
             sql_code += f'INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta) VALUES ({COMANDA_ID_SEQ}, {reteta});\n'
         if random.choice([True, False]):
             adresa = f"Str. {random.choice(nume)} nr. {random.randint(1, 100)}"
