@@ -49,15 +49,14 @@ def main():
             if autorizat_sa_angajeze == 1:
                 manager.append(id_angajat)
         casa_de_marcat = 0
-        for i in range (random.randint(1, 2)):
+        for i in range (random.randint(1, 3)):
             id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "CASIER")
             nr_casa_de_marcat = "NULL"
-            if i == 0:
+            if i == 0 or random.choice([False, True, True]):
                 casa_de_marcat += 1
                 nr_casa_de_marcat = casa_de_marcat
-            sql_code += f"INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES ({id_angajat}, {nr_casa_de_marcat});\n"
-            if nr_casa_de_marcat != "NULL":
                 casier.append(id_angajat)
+            sql_code += f"INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES ({id_angajat}, {nr_casa_de_marcat});\n"
         for _ in range (random.randint(1, 1)):
             id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "BUCATAR")
             data_antrenament_de_siguranta = random.choice([start_date, "NULL"])
@@ -80,7 +79,7 @@ def main():
 
     for i in RESTAURANT:
         for c in CASIER[i]:
-            for _ in range(random.choice([3, 3, 4, 5])):
+            for _ in range(random.randint(1, 10)):
                 random_comanda(i, c)
     TABELE = ['ORAS', 'RESTAURANT', 'JOB_are_SALARIU', 'ANGAJAT', 'CASIER', 'BUCATAR', 'MANAGER', 'INGREDIENT', 'RETETA', 'ALERGIE', 'COMANDA', 'LIVRARE', 'INGREDIENT_provoaca_ALERGIE', 'RETETA_contine_INGREDIENT', 'COMANDA_include_RETETA']
     for table in TABELE:
