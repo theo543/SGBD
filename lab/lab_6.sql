@@ -41,3 +41,34 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('Eroare: '||SQLERRM||' - trebuie crescuta dimensiunea maxima a vectorului!');
 END;
 /
+
+-- E2. Definiți un tip colecție denumit tip_orase_***. Creați tabelul excursie_*** cu următoarea structură:
+-- cod_excursie NUMBER(4), denumire VARCHAR2(20), orase tip_orase_*** (ce va conține lista
+-- orașelor care se vizitează într-o excursie, într-o ordine stabilită; de exemplu, primul oraș din listă va fi
+-- primul oraș vizitat), status (disponibilă sau anulată).
+-- a. Inserați 5 înregistrări în tabel.
+-- b. Actualizați coloana orase pentru o excursie specificată:
+--    - adăugați un oraș nou în listă, ce va fi ultimul vizitat în excursia respectivă;
+--    - adăugați un oraș nou în listă, ce va fi al doilea oraș vizitat în excursia respectivă;
+--    - inversați ordinea de vizitare a două dintre orașe al căror nume este specificat;
+--    - eliminați din listă un oraș al cărui nume este specificat.
+-- c. Pentru o excursie al cărui cod este dat, afișați numărul de orașe vizitate, respectiv numele orașelor.
+-- d. Pentru fiecare excursie afișați lista orașelor vizitate.
+-- e. Anulați excursiile cu cele mai puține orașe vizitate.
+
+CREATE TYPE lista_orase IS TABLE OF VARCHAR2(20);
+CREATE TABLE excursie (
+    cod_excursie NUMBER(4) PRIMARY KEY,
+    denumire VARCHAR2(20),
+    orase lista_orase
+)
+NESTED TABLE orase STORE AS NESTED_excursie_lista_orase;
+
+INSERT INTO excursie (cod_excursie, denumire, orase) VALUES (1, 'Excursie 1', lista_orase('Bucuresti', 'Timisoara'));
+INSERT INTO excursie (cod_excursie, denumire, orase) VALUES (2, 'Excursie 2', lista_orase('Craiova', 'Timisoara'));
+INSERT INTO excursie (cod_excursie, denumire, orase) VALUES (3, 'Excursie 3', lista_orase('Craiova', 'Cluj'));
+INSERT INTO excursie (cod_excursie, denumire, orase) VALUES (4, 'Excursie 4', lista_orase('Bucuresti', 'Cluj'));
+INSERT INTO excursie (cod_excursie, denumire, orase) VALUES (5, 'Excursie 5', lista_orase('Craiova', 'Bucuresti', 'Cluj'));
+
+DROP TABLE excursie;
+DROP TYPE lista_orase;
