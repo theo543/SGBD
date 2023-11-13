@@ -92,6 +92,32 @@ BEGIN
 END;
 /
 
+-- b. ciclu cursoare
+
+DECLARE
+    v_current_job jobs.job_id%TYPE := -1;
+BEGIN
+    FOR rowdata IN (
+        SELECT job_id, job_title, EMPLOYEE_ID, first_name, last_name, salary
+        FROM jobs
+        LEFT JOIN employees
+        USING (job_id)
+    )
+    LOOP
+        IF rowdata.first_name IS NULL
+        THEN
+            dbms_output.PUT_LINE('--- Nu sunt angajati cu jobul "'||rowdata.job_title||'" ---');
+            CONTINUE;
+        END IF;
+        IF v_current_job != rowdata.job_id
+        THEN
+            v_current_job := rowdata.job_id;
+            dbms_output.PUT_LINE('--- Angajati din job "'||rowdata.job_title||'": ---');
+        END IF;
+        dbms_output.PUT_LINE('    '||rowdata.first_name||' '||rowdata.last_name||', salariu '||rowdata.salary);
+    END LOOP;
+END;
+
 -- c. ciclu cursoare cu subcereri
 
 DECLARE
