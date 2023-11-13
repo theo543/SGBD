@@ -42,3 +42,52 @@ BEGIN
         END LOOP;
     END LOOP;
 END;
+
+-- E1.Pentru fiecare job (titlu – care va fi afișat o singură dată) obțineți lista angajaților (nume și
+-- salariu) care lucrează în prezent pe jobul respectiv. Tratați cazul în care nu există angajați care
+-- să lucreze în prezent pe un anumit job. Rezolvați problema folosind:
+-- a. cursoare clasice
+-- b. ciclu cursoare
+-- c. ciclu cursoare cu subcereri
+-- d. expresii cursor
+
+INSERT INTO jobs (job_id, job_title, min_salary, max_salary) VALUES ('TEST_JOB', 'Job fara angajati (test).', 0, 0);
+
+-- cursoare clasice / explicite
+
+DECLARE
+    CURSOR c_jobs
+        IS
+        SELECT job_id, job_title
+        FROM jobs;
+    v_job c_jobs%ROWTYPE;
+    CURSOR c_angajati(required_job_id jobs.job_id%TYPE)
+        IS
+        SELECT first_name || ' ' || last_name name, salary
+        FROM employees
+        WHERE job_id = required_job_id;
+    v_angajat c_angajati%ROWTYPE;
+BEGIN
+    OPEN c_jobs;
+    LOOP
+        FETCH c_jobs INTO v_job;
+        EXIT WHEN c_jobs%NOTFOUND;
+        OPEN c_angajati(v_job.job_id);
+        FETCH c_angajati INTO v_angajat;
+        IF c_angajati%NOTFOUND
+        THEN
+            DBMS_OUTPUT.PUT_LINE('--- Nu sunt angajati cu jobul "'||v_job.job_title||'" ---');
+            CLOSE c_angajati;
+            CONTINUE;
+        END IF;
+        DBMS_OUTPUT.PUT_LINE('--- Angajati din job "'||v_job.job_title||'": ---');
+        LOOP
+            DBMS_OUTPUT.PUT_LINE('    '||v_angajat.name||', salariu '||v_angajat.salary);
+            FETCH c_angajati INTO v_angajat;
+            EXIT WHEN c_angajati%NOTFOUND;
+        END LOOP;
+        CLOSE c_angajati;
+    END LOOP;
+    CLOSE c_jobs;
+END;
+/
