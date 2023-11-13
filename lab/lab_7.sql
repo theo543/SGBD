@@ -53,7 +53,7 @@ END;
 
 INSERT INTO jobs (job_id, job_title, min_salary, max_salary) VALUES ('TEST_JOB', 'Job fara angajati (test).', 0, 0);
 
--- cursoare clasice / explicite
+-- a. cursoare clasice / explicite
 
 DECLARE
     CURSOR c_jobs
@@ -89,5 +89,31 @@ BEGIN
         CLOSE c_angajati;
     END LOOP;
     CLOSE c_jobs;
+END;
+/
+
+-- c. ciclu cursoare cu subcereri
+
+DECLARE
+    v_any_employees BOOLEAN;
+BEGIN
+    FOR job IN (SELECT job_id, job_title FROM JOBS)
+    LOOP
+        DBMS_OUTPUT.PUT_LINE('--- Angajati din job "'||job.job_title||'": ---');
+        v_any_employees := FALSE;
+        FOR angajat IN (
+            SELECT first_name || ' ' || last_name name, salary
+            FROM employees
+            WHERE job_id = job.job_id
+        )
+        LOOP
+            v_any_employees := TRUE;
+            DBMS_OUTPUT.PUT_LINE('    '||angajat.name||', salariu '||angajat.salary);
+        END LOOP;
+        IF NOT v_any_employees
+        THEN
+            DBMS_OUTPUT.PUT_LINE('    Niciun angajat in acest job!');
+        END IF;
+    END LOOP;
 END;
 /
