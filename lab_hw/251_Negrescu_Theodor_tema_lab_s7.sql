@@ -93,3 +93,36 @@ BEGIN
     END LOOP;
 END;
 /
+
+-- b. expresie cursor
+
+DECLARE
+    CURSOR c_rest
+        IS
+        SELECT id_restaurant, nume nume_oras, CURSOR (
+            SELECT id_angajat, nume nume_angajat
+            FROM ANGAJAT
+            WHERE ANGAJAT.id_restaurant = RESTAURANT.id_restaurant
+        ) c_ang
+        FROM RESTAURANT
+        JOIN ORAS
+        USING (id_oras)
+        WHERE id_restaurant IN (1, 2, 3, 4);
+    v_nume_angajat ANGAJAT.nume%TYPE;
+    v_id_angajat ANGAJAT.id_angajat%TYPE;
+    v_id_restaurant RESTAURANT.id_restaurant%TYPE;
+    v_nume_oras ORAS.nume%TYPE;
+    v_c_ang SYS_REFCURSOR;
+BEGIN
+    OPEN c_rest;
+    LOOP
+        FETCH c_rest INTO v_id_restaurant, v_nume_oras, v_c_ang;
+        EXIT WHEN c_rest%NOTFOUND;
+        dbms_output.PUT_LINE('-------- Restaurant '||v_id_restaurant||' (oras '||v_nume_oras||'): --------');
+        LOOP
+            FETCH v_c_ang INTO v_id_angajat, v_nume_angajat;
+            EXIT WHEN v_c_ang%NOTFOUND;
+            dbms_output.PUT_LINE(v_nume_angajat|| ' (ID '||v_id_angajat||')');
+        END LOOP;
+    END LOOP;
+END;
