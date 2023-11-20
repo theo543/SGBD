@@ -72,3 +72,50 @@ END;
 /
 
 ROLLBACK;
+
+CREATE SEQUENCE seq_info START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE info (
+    id         NUMBER DEFAULT seq_info.nextval PRIMARY KEY,
+    utilizator VARCHAR2(50),
+    data       DATE,
+    comanda    VARCHAR2(255),
+    nr_linii   NUMBER(6),
+    eroare     VARCHAR2(50)
+);
+
+CREATE OR REPLACE FUNCTION f2 (v_nume employees.last_name%TYPE DEFAULT 'Bell')
+RETURN NUMBER IS
+    salariu employees.salary%type;
+    comanda info.comanda%type;
+BEGIN
+    comanda := 'SELECT salary INTO salariu
+    FROM employees
+    WHERE last_name = '||v_nume||'
+    RETURN salariu;';
+    SELECT salary INTO salariu
+    FROM employees
+    WHERE last_name = v_nume;
+    RETURN salariu;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        INSERT INTO info (utilizator, data, comanda, nr_linii, eroare)
+        VALUES ((SELECT USER FROM DUAL), (SELECT SYSDATE FROM DUAL), comanda, SQL%ROWCOUNT, 'Nu exista angajati cu numele dat');
+        RETURN -1;
+    WHEN TOO_MANY_ROWS THEN
+        INSERT INTO info (utilizator, data, comanda, nr_linii, eroare)
+        VALUES ((SELECT USER FROM DUAL), (SELECT SYSDATE FROM DUAL), comanda, SQL%ROWCOUNT, 'Exista mai multi angajati cu numele dat');
+        RETURN -2;
+    WHEN OTHERS THEN
+        INSERT INTO info (utilizator, data, comanda, nr_linii, eroare)
+        VALUES ((SELECT USER FROM DUAL), (SELECT SYSDATE FROM DUAL), comanda, SQL%ROWCOUNT, 'Alta eroare!');
+        RETURN -3;
+END f2;
+/
+
+-- nu merge pe serverul grupei DEFAULT cu seq
+-- are eroare ORA-00911: caracter eronat
+
+DROP SEQUENCE seq_info;
+DROP TABLE info;
+DROP FUNCTION f2;
