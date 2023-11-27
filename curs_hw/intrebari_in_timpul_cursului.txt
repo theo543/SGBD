@@ -1,0 +1,85 @@
+Pentru fiecare set de intrebari se acorda 0,1 puncte
+=========================
+9.10.2023 Curs 2 - Set 1
+
+1. Ce este BD?
+2. Tipuri de BD.
+3. Tipuri de comenzi SQL.
+4. Constrangeri de integritate.
+
+11:44
+=========================
+16.10.2023 Curs 3 - Set 2
+
+Intrebarea 6: Există și alte metode de rezolvare a problemei?
+
+10:54
+=========================
+23.10.2023 Curs 4 - Set 3
+
+1. Dati exemple de tipuri de date scalare specifice PLSQL
+2. Indicati diferente intre tablouri indexate si tablouri imbricate
+3. Indicati diferente intre vectori si tablouri imbricate
+
+11:40
+=========================
+30.10.2023 Curs 5 - Set 4
+
+1. Care sunt diferentele dintre tablouri imbricate si vectori?
+
+-> 11:36
+=========================
+6.11.2023 Curs 6 - Set 5
+
+1. Care sunt tipurile de cursoare invatate azi?
+2. Care sunt diferentele dintre acestea?
+
+11:50
+=========================
+13.11.2023 Curs 7 - Set 6
+
+1. Subprogramele împachetate sunt subprograme stocate?
+2. Un subprogram local, declarat şi apelat într-un bloc anonim, este temporar sau permanent? Poate fi apelat din alte aplicaţii?
+3. Un subprogram stocat este temporar sau permanent? Poate fi apelat din alte aplicaţii?
+4. De câte ori este compilat un subprogram local?
+5. De câte ori este compilat un subprogram stocat?
+10:50
+
+6. O procedură stocată poate fi invocată într-o comandă SQL (de exemplu, în comanda SELECT)?
+11:28
+
+=========================
+20.11.2023 Curs 8 - Set 7
+1. Se pot defini pachete care cuprind doar partea de specificație?
+2. Se pot defini pachete care cuprind doar corpul pachetului?
+3. Ce situații impun definirea atât a specificației, cât și a corpului pachetului?
+4. Corpul pachetului poate fi schimbat fără a modifica specificația acestuia?
+
+11:25
+
+=========================
+27.11.2023 Curs 9 - Set 8
+Se pot defini funcții cu același nume ca și cele predefinite? 
+Funcția din exemplul 7.8 se poate defini?
+--Exemplul 7.7
+
+SELECT STANDARD.ABS(-1), ABS(-1)
+FROM   DUAL;
+--------------------
+
+--Exemplul 7.8
+
+CREATE OR REPLACE FUNCTION ABS(x NUMBER)
+RETURN VARCHAR2
+IS 
+BEGIN
+	IF x<0 THEN RETURN 'Rezultatul intors este: '||-1*x;
+	ELSE RETURN 'Rezultatul intors este: '||x;
+	END IF;
+END;
+/
+
+SELECT ABS(-1), seria25.ABS(-1)
+FROM DUAL;
+
+10:35

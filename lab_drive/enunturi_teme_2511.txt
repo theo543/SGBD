@@ -1,0 +1,39 @@
+9.10.23 (S2) 0.125p
+DEADLINE 16.10.23, ora 12
+
+exercitiul 16 si TEMA din fisierul Laborator0_PLSQL_anexa1.pdf
+
+16.10.23 (S3) 0.125p
+DEADLINE 23.10.23, ora 12
+
+exercitiile 24-31 din fisierul Laborator0_PLSQL.pdf si TEMA din fisierul Laborator0_PLSQL_anexa2.pdf
+
+23.10.23 (S4) 0.25p
+DEADLINE 30.10.23, ora 12
+
+Exercitiul E6 din fisierul Laborator1_PLSQL.pdf care presupune folosirea exemplelor din acelasi fisier.
+
+30.10.23 (S5) 0.125p
+DEADLINE 6.11.23, ora 12
+
+Exercitiul E4 (PARTIAL, doar exemplul 9) din fisierul Laborator2_PLSQL.pdf.
+
+6.11.23 (S6) 0.125p
+DEADLINE 13.11.23, ora 12
+
+Exercitiul E4 (PARTIAL, doar exemplul 10) din fisierul Laborator2_PLSQL.pdf si E2 (punctul b).
+
+13.11.23 (S7) 0.25p
+DEADLINE 20.11.23, ora 12
+
+Exercitiul E6 din fisierul Laborator3_PLSQL.pdf.
+
+20.11.23 (S8) 0.125p
+DEADLINE 27.11.23, ora 12
+
+Exercitiul E7 (PARTIAL, doar exemplul 2) din fisierul Laborator4_PLSQL.pdf.
+
+27.11.23 (S9) 0.125p
+DEADLINE 4.12.23, ora 12
+
+Exercitiul E7 (PARTIAL, doar exemplul 4) din fisierul Laborator4_PLSQL.pdf.

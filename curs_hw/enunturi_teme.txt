@@ -1,0 +1,57 @@
+=========================
+16.10.2023 - Tema 1, saptamana 3 (0.1p)
+DEADLINE 23.10.2023, ora 10
+
+SGBD2...pdf
+7. Numărul de produse cumpărate de client trebuie să fie în permanență
+actualizat și să corespundă situației prezente. Se poate realiza realtime acest lucru cu SQL?
+
+SGBD3...pdf
+1. Comanda SELECT poate fi utilizată într-o procedură Microsoft T-SQL fără clauza INTO?
+2. În Microsoft T-SQL comanda SELECT cu clauza INTO funcționează la fel ca și în PL/SQL?
+3. Comanda SELECT poate fi utilizată într-o procedură Microsoft SQL fără clauza INTO?
+4. Ce opțiuni permite comanda SELECT ... INTO în MySQL?
+5. Un bloc PL/SQL poate conține mai multe comenzi COMMIT, SAVEPOINT sau ROLLBACK?
+
+=========================
+30.10.2023 - Tema 2, saptamana 5 (0.2p)
+DEADLINE 06.11.2023, ora 10
+
+Exercitiu bazat pe schema companie comerciala - prezentata la curs.
+
+1. Vom numi "tip3" un tip de date ce folosește în definirea lui un alt tip de date ("tip2"), 
+care la rândul lui utilizează un alt tip de date ("tip1"). 
+Definiți un astfel de tip, indicați ce anume reprezintă și utilizați-l prin adăugarea unei coloane de acest tip 
+unui tabel clonat din schema. 
+Cu ajutorul unui bloc anonim actualizați coloana adăugată cu informații relevante din schema.
+
+=========================
+6.11.2023 - Tema 3, saptamana 6 (0.2p)
+DEADLINE 13.11.2023, ora 10
+
+ExercitiU bazat pe schema companie comerciala - prezentata la curs.
+
+1. Enunțați o cerere în limbaj natural pe schema, 
+care să implice în rezolvare un cursor cu parametru ce extrage 
+informațiile din cel puțin 2 tabele și care utilizează cel puțin o funcție grup. 
+Scrieți un bloc care utilizează acest cursor.
+
+=========================
+13.11.2023 - Tema 4, saptamana 7 (0.2p)
+DEADLINE 20.11.2023, ora 10
+
+Exercitii bazate pe schema companie comerciala - prezentata la curs.
+
+1. Enunțați o cerere în limbaj natural pe schema, 
+care să implice în rezolvare utilizarea unui cursor dinamic. 
+Scrieți un subprogram care utilizează acest cursor. 
+Vor fi afișate informațiile din cel puțin două coloane returnate de cursor. 
+Tratați erorile care pot să apară la apelare. Testați.
+
+2. Definiți un bloc PL/SQL în care procedura proc_ex2 (Exemplul 6.2 din SGBD6 - PLSQL Subprograme.pdf) este apelată pentru fiecare produs din categoria 'it' (nivel 1). Prețul acestor produse va fi micșorat cu 5%.
+
+=========================
+27.11.2023 - Tema 5, saptamana 9 (0.2p)
+DEADLINE 4.12.2023, ora 10
+
+1. Definiți un pachet care să conțină obiectele definite în cadrul temelor de curs atribuite pe 30.10.2023, 6.11.2023 si 13.11.2023. Apelați subprogramele din pachet.
