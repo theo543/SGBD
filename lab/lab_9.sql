@@ -21,7 +21,7 @@ CREATE OR REPLACE PROCEDURE p4(v_nume employees.last_name%TYPE)
 IS
     salariu employees.salary%TYPE;
 
-    PROCEDURE insert_log(error_code BINARY_INTEGER)
+    PROCEDURE insert_log(error_code NUMBER)
     IS
         BEGIN
             INSERT INTO info_proc (utilizator, data, comanda, nr_linii, eroare)
@@ -80,3 +80,170 @@ WHERE last_name = non-existent
 DROP PROCEDURE p4;
 DROP TABLE info_proc;
 DROP SEQUENCE seq_info_proc;
+
+
+
+/*
+ E3. Definiți o funcție stocată care determină numărul de angajați care au avut cel puțin 2 joburi
+diferite și care în prezent lucrează într-un oraș dat ca parametru. Tratați cazul în care orașul dat
+ca parametru nu există, respectiv cazul în care în orașul dat nu lucrează niciun angajat. Inserați
+în tabelul info_*** informațiile corespunzătoare fiecărui caz determinat de valoarea dată pentru
+parametru.
+*/
+
+CREATE SEQUENCE seq_info_fn_e3;
+CREATE TABLE info_fn_e3(
+    id         NUMBER DEFAULT seq_info_fn_e3.nextval PRIMARY KEY,
+    utilizator VARCHAR2(50),
+    data       DATE,
+    oras_cerut VARCHAR2(30),
+    rezultat   NUMBER,
+    eroare_msg VARCHAR2(255)
+);
+
+CREATE OR REPLACE FUNCTION fn_e3(v_oras locations.city%TYPE)
+RETURN NUMBER
+IS
+
+    locatii_cu_orasul  BINARY_INTEGER;
+    angajati_cu_orasul BINARY_INTEGER;
+    raspuns            BINARY_INTEGER;
+
+    PROCEDURE insert_log(rezultat NUMBER, error_msg VARCHAR2)
+    IS
+        BEGIN
+            INSERT INTO info_fn_e3 (utilizator, data, oras_cerut, rezultat, eroare_msg)
+            VALUES ((SELECT USER FROM DUAL),
+                    (SELECT SYSDATE FROM DUAL),
+                    v_oras,
+                    rezultat,
+                    error_msg);
+    END insert_log;
+
+    BEGIN
+        SELECT COUNT(location_id)
+        INTO locatii_cu_orasul
+        FROM locations
+        WHERE city = v_oras;
+
+        IF locatii_cu_orasul = 0 THEN
+            insert_log(0, 'Nu există locații în orașul "'||v_oras||'".');
+            RETURN 0;
+        END IF;
+
+        SELECT COUNT(employee_id)
+        INTO angajati_cu_orasul
+        FROM employees
+        JOIN departments
+        USING (department_id)
+        JOIN locations
+        USING (location_id)
+        WHERE city = v_oras;
+
+        IF angajati_cu_orasul = 0 THEN
+            insert_log(0, 'Deși există locații în orașul "'||v_oras||'", nu lucreză nimeniun angajat acolo momentan.');
+            RETURN 0;
+        END IF;
+
+        SELECT COUNT(employee_id)
+        INTO raspuns
+        FROM employees
+        JOIN departments
+        USING (department_id)
+        JOIN locations
+        USING (location_id)
+        WHERE city = v_oras AND EXISTS(
+            SELECT *
+            FROM job_history
+            WHERE job_history.employee_id = employees.employee_id
+        );
+
+        IF raspuns = 0 THEN
+            insert_log(0, 'Desi exista angajați care lucreză in orașul "'||v_oras||'", nu există unul care să fi avut cel puțin două joburi.');
+            RETURN 0;
+        END IF;
+
+        insert_log(raspuns, 'Găsit '||raspuns||' angajați la căutarea de angajați in orasul "'||v_oras||'" care să fi avut cel puțin două joburi.');
+        RETURN raspuns;
+END fn_e3;
+/
+
+DECLARE
+    eroare_msg info_fn_e3.eroare_msg%TYPE;
+    TYPE test_cases IS VARRAY(50) OF VARCHAR2(255);
+    v_test_cases test_cases := test_cases(
+        'Bucharest', 'Craiova', '___nonexistent___', 'Roma', 'Venice', 'Tokyo', 'Hiroshima', 'Southlake', 'South San Francisco', 'South Brunswick', 'Seattle', 'Toronto', 'Whitehorse', 'Beijing', 'Bombay', 'Sydney', 'Singapore', 'London', 'Oxford', 'Stretford', 'Munich', 'Sao Paulo', 'Geneva', 'Bern', 'Utrecht', 'Mexico City'
+    );
+BEGIN
+    FOR i IN 1..v_test_cases.LAST
+    LOOP
+        dbms_output.PUT_LINE(v_test_cases(i)||' => '||fn_e3(v_test_cases(i)));
+        SELECT eroare_msg
+        INTO eroare_msg
+        FROM info_fn_e3
+        WHERE id = (SELECT MAX(id) FROM info_fn_e3);
+        dbms_output.PUT_LINE(eroare_msg);
+    END LOOP;
+END;
+/
+
+/*
+ Bucharest => 0
+Nu există locații în orașul "Bucharest".
+Craiova => 0
+Nu există locații în orașul "Craiova".
+___nonexistent___ => 0
+Nu există locații în orașul "___nonexistent___".
+Roma => 0
+Deși există locații în orașul "Roma", nu lucreză nimeniun angajat acolo momentan.
+Venice => 0
+Deși există locații în orașul "Venice", nu lucreză nimeniun angajat acolo momentan.
+Tokyo => 0
+Deși există locații în orașul "Tokyo", nu lucreză nimeniun angajat acolo momentan.
+Hiroshima => 0
+Deși există locații în orașul "Hiroshima", nu lucreză nimeniun angajat acolo momentan.
+Southlake => 0
+Desi exista angajați care lucreză in orașul "Southlake", nu există unul care să fi avut cel puțin două joburi.
+South San Francisco => 1
+Găsit 1 angajați la căutarea de angajați in orasul "South San Francisco" care să fi avut cel puțin două joburi.
+South Brunswick => 0
+Deși există locații în orașul "South Brunswick", nu lucreză nimeniun angajat acolo momentan.
+Seattle => 4
+Găsit 4 angajați la căutarea de angajați in orasul "Seattle" care să fi avut cel puțin două joburi.
+Toronto => 1
+Găsit 1 angajați la căutarea de angajați in orasul "Toronto" care să fi avut cel puțin două joburi.
+Whitehorse => 0
+Deși există locații în orașul "Whitehorse", nu lucreză nimeniun angajat acolo momentan.
+Beijing => 0
+Deși există locații în orașul "Beijing", nu lucreză nimeniun angajat acolo momentan.
+Bombay => 0
+Deși există locații în orașul "Bombay", nu lucreză nimeniun angajat acolo momentan.
+Sydney => 0
+Deși există locații în orașul "Sydney", nu lucreză nimeniun angajat acolo momentan.
+Singapore => 0
+Deși există locații în orașul "Singapore", nu lucreză nimeniun angajat acolo momentan.
+London => 0
+Desi exista angajați care lucreză in orașul "London", nu există unul care să fi avut cel puțin două joburi.
+Oxford => 1
+Găsit 1 angajați la căutarea de angajați in orasul "Oxford" care să fi avut cel puțin două joburi.
+Stretford => 0
+Deși există locații în orașul "Stretford", nu lucreză nimeniun angajat acolo momentan.
+Munich => 0
+Desi exista angajați care lucreză in orașul "Munich", nu există unul care să fi avut cel puțin două joburi.
+Sao Paulo => 0
+Deși există locații în orașul "Sao Paulo", nu lucreză nimeniun angajat acolo momentan.
+Geneva => 0
+Deși există locații în orașul "Geneva", nu lucreză nimeniun angajat acolo momentan.
+Bern => 0
+Deși există locații în orașul "Bern", nu lucreză nimeniun angajat acolo momentan.
+Utrecht => 0
+Deși există locații în orașul "Utrecht", nu lucreză nimeniun angajat acolo momentan.
+Mexico City => 0
+Deși există locații în orașul "Mexico City", nu lucreză nimeniun angajat acolo momentan.
+*/
+
+SELECT * FROM info_fn_e3;
+
+DROP FUNCTION fn_e3;
+DROP TABLE info_fn_e3;
+DROP SEQUENCE seq_info_fn_e3;
