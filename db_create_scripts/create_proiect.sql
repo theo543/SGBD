@@ -16,9 +16,10 @@ CREATE TABLE RESTAURANT (
   data_deschidere DATE NOT NULL,
   FOREIGN KEY (id_oras) REFERENCES ORAS(id_oras)
 );
-CREATE TABLE JOB_are_SALARIU (
+CREATE TABLE JOB (
   job_cod VARCHAR2(10) PRIMARY KEY,
-  salariu NUMBER(10) NOT NULL
+  salariu_baza NUMBER(10) NOT NULL,
+  bonus_maxim NUMBER(10) NOT NULL
 );
 CREATE TABLE ANGAJAT (
   id_angajat NUMBER(10) DEFAULT ID_ANGAJAT_SEQ.nextval PRIMARY KEY,
@@ -27,8 +28,9 @@ CREATE TABLE ANGAJAT (
   job_cod VARCHAR2(10) NOT NULL,
   nume VARCHAR2(50) NOT NULL,
   data_angajare DATE NOT NULL,
+  salariu NUMBER(10) NOT NULL,
   FOREIGN KEY (id_restaurant) REFERENCES RESTAURANT(id_restaurant),
-  FOREIGN KEY (job_cod) REFERENCES JOB_are_SALARIU(job_cod)
+  FOREIGN KEY (job_cod) REFERENCES JOB(job_cod)
 );
 CREATE TABLE CASIER (
   id_angajat NUMBER(10) PRIMARY KEY,
@@ -95,12 +97,12 @@ CREATE TABLE COMANDA_include_RETETA (
   PRIMARY KEY (id_comanda, id_reteta)
 );
 
-INSERT INTO JOB_are_SALARIU
-VALUES ('CASIER', 2000);
-INSERT INTO JOB_are_SALARIU
-VALUES ('BUCATAR', 4000);
-INSERT INTO JOB_are_SALARIU
-VALUES ('MANAGER', 4500);
+INSERT INTO JOB
+VALUES ('CASIER', 2000, 500);
+INSERT INTO JOB
+VALUES ('BUCATAR', 4000, 1000);
+INSERT INTO JOB
+VALUES ('MANAGER', 4500, 2500);
 
 INSERT INTO ORAS (nume)
 VALUES ('Bucuresti');
@@ -168,47 +170,47 @@ INSERT INTO RETETA_contine_INGREDIENT (id_reteta, id_ingredient) VALUES (5, 6);
 
 
 INSERT INTO RESTAURANT (id_oras, data_deschidere) VALUES (1, TO_DATE('2020-01-01', 'YYYY-MM-DD'));
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (1, NULL, 'MANAGER', 'Olariu Adrian', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (1, NULL, 'MANAGER', 'Olariu Adrian', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 5973);
 INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES (1, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (1, 1, 'MANAGER', 'Murariu Corina', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (1, 1, 'MANAGER', 'Murariu Corina', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 6314);
 INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES (2, 0);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (1, 1, 'CASIER', 'Iorga Irina', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (1, 1, 'CASIER', 'Iorga Irina', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 2331);
 INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES (3, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (1, 1, 'CASIER', 'Paduraru Alina', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (1, 1, 'CASIER', 'Paduraru Alina', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 2197);
 INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES (4, 2);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (1, 1, 'BUCATAR', 'Nechifor Valentin', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (1, 1, 'BUCATAR', 'Nechifor Valentin', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 4434);
 INSERT INTO BUCATAR (id_angajat, data_antrenament_de_siguranta) VALUES (5, TO_DATE('2020-01-01', 'YYYY-MM-DD'));
 INSERT INTO RESTAURANT (id_oras, data_deschidere) VALUES (2, TO_DATE('2020-01-01', 'YYYY-MM-DD'));
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (2, NULL, 'MANAGER', 'Lungu Ionut', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (2, NULL, 'MANAGER', 'Lungu Ionut', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 6741);
 INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES (6, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (2, 6, 'MANAGER', 'Solomon Ovidiu', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (2, 6, 'MANAGER', 'Solomon Ovidiu', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 5800);
 INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES (7, 0);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (2, 6, 'CASIER', 'Groza Anamaria', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (2, 6, 'CASIER', 'Groza Anamaria', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 2143);
 INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES (8, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (2, 6, 'BUCATAR', 'Vaduva Radu', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (2, 6, 'BUCATAR', 'Vaduva Radu', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 4478);
 INSERT INTO BUCATAR (id_angajat, data_antrenament_de_siguranta) VALUES (9, NULL);
 INSERT INTO RESTAURANT (id_oras, data_deschidere) VALUES (3, TO_DATE('2020-01-01', 'YYYY-MM-DD'));
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (3, NULL, 'MANAGER', 'Tomescu Alexandru', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (3, NULL, 'MANAGER', 'Tomescu Alexandru', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 6305);
 INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES (10, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (3, 10, 'CASIER', 'Robu Andreea Elena', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (3, 10, 'CASIER', 'Robu Andreea Elena', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 2266);
 INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES (11, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (3, 10, 'BUCATAR', 'Trandafir Ioan', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (3, 10, 'BUCATAR', 'Trandafir Ioan', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 4505);
 INSERT INTO BUCATAR (id_angajat, data_antrenament_de_siguranta) VALUES (12, NULL);
 INSERT INTO RESTAURANT (id_oras, data_deschidere) VALUES (4, TO_DATE('2020-01-01', 'YYYY-MM-DD'));
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (4, NULL, 'MANAGER', 'Kovacs Florina', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (4, NULL, 'MANAGER', 'Kovacs Florina', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 6369);
 INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES (13, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (4, 13, 'CASIER', 'Costea Viorel', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (4, 13, 'CASIER', 'Costea Viorel', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 2360);
 INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES (14, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (4, 13, 'BUCATAR', 'Iordache Anamaria', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (4, 13, 'BUCATAR', 'Iordache Anamaria', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 4285);
 INSERT INTO BUCATAR (id_angajat, data_antrenament_de_siguranta) VALUES (15, NULL);
 INSERT INTO RESTAURANT (id_oras, data_deschidere) VALUES (5, TO_DATE('2020-01-01', 'YYYY-MM-DD'));
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (5, NULL, 'MANAGER', 'Ciocan Iulia', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (5, NULL, 'MANAGER', 'Ciocan Iulia', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 5448);
 INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES (16, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (5, 16, 'CASIER', 'Tomescu Iulian', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (5, 16, 'CASIER', 'Tomescu Iulian', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 2236);
 INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES (17, 1);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (5, 16, 'CASIER', 'Vieru Iulia', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
-INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES (18, NULL);
-INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES (5, 16, 'BUCATAR', 'Dobre Claudiu', TO_DATE('2020-01-01', 'YYYY-MM-DD'));
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (5, 16, 'CASIER', 'Vieru Iulia', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 2132);
+INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES (18, 2);
+INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES (5, 16, 'BUCATAR', 'Dobre Claudiu', TO_DATE('2020-01-01', 'YYYY-MM-DD'), 4937);
 INSERT INTO BUCATAR (id_angajat, data_antrenament_de_siguranta) VALUES (19, NULL);
 INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (1, 3);
 INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (1, 2, 1);
@@ -312,9 +314,37 @@ INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 17);
 INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (30, 3, 2);
 INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (30, 5, 3);
 INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (30, 'Str. Ifrim nr. 84', 20);
+INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 18);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (31, 4, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (31, 3, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (31, 5, 1);
+INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 18);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (32, 2, 1);
+INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 18);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (33, 3, 2);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (33, 5, 1);
+INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 18);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (34, 5, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (34, 1, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (34, 4, 2);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (34, 2, 1);
+INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 18);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (35, 5, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (35, 2, 1);
+INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 18);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (36, 2, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (36, 1, 3);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (36, 5, 2);
+INSERT INTO LIVRARE (id_comanda, adresa, pret) VALUES (36, 'Str. Ciocan nr. 52', 14);
+INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 18);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (37, 1, 2);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (37, 5, 1);
+INSERT INTO COMANDA (id_restaurant, id_casier) VALUES (5, 18);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (38, 3, 1);
+INSERT INTO COMANDA_include_RETETA (id_comanda, id_reteta, nr) VALUES (38, 1, 1);
 SELECT COUNT(*) FROM ORAS;
 SELECT COUNT(*) FROM RESTAURANT;
-SELECT COUNT(*) FROM JOB_are_SALARIU;
+SELECT COUNT(*) FROM JOB;
 SELECT COUNT(*) FROM ANGAJAT;
 SELECT COUNT(*) FROM CASIER;
 SELECT COUNT(*) FROM BUCATAR;

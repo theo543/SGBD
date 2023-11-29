@@ -1,6 +1,7 @@
 import random;
 def main():
     random.seed(0)
+    salary_rng = random.Random(0)
     sql_code = "\n\n"
     # http://www.name-statistics.org/ro/prenumecomune.php
 
@@ -20,18 +21,35 @@ def main():
     nr_retete = 5
     nr_orase = 5
 
-    def insert_random_employee(id_restaurant, manageri, job_cod) -> int:
+    def insert_random_employee(id_restaurant, manageri, job_cod, base_salary, bonus_max) -> int:
         nonlocal ANGAJAT_ID_SEQ
         nonlocal sql_code
         id_angajator = "NULL"
         if(len(manager) != 0): id_angajator = random.choice(manager)
         ANGAJAT_ID_SEQ += 1
-        sql_code += f"INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare) VALUES ({id_restaurant}, {id_angajator}, '{job_cod}', '{random.choice(nume)} {random.choice(prenume)}', {start_date});\n"
+        emp_salary = base_salary
+        salary_kind = salary_rng.randint(1, 5)
+        match salary_kind:
+            # TODO: add some values outside the allowed range, and code to warn/generate a report of disallowed salaries.
+            # case 1:
+            #     emp_salary = base_salary * 0.95
+            # case 2:
+            #     emp_salary = base_salary + bonus_max * 1.05
+            case _:
+                emp_salary = base_salary + round((salary_rng.random() * 0.5 + salary_rng.random() * 0.5) * bonus_max)
+        sql_code += f"INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES ({id_restaurant}, {id_angajator}, '{job_cod}', '{random.choice(nume)} {random.choice(prenume)}', {start_date}, {emp_salary});\n"
         return ANGAJAT_ID_SEQ
 
     RESTAURANT : list[int] = []
     MANAGER = {}
     CASIER  = {}
+
+    BASE_SALARY_CASIER = 2000
+    MAX_BONUS_CASIER = 500
+    BASE_SALARY_BUCATAR = 4000
+    MAX_BONUS_BUCATAR = 1000
+    BASE_SALARY_MANAGER = 4500
+    MAX_BONUS_MANAGER = 2500
 
     for i in range(5):
         RESTAURANT_ID_SEQ += 1
@@ -43,14 +61,14 @@ def main():
         manager = MANAGER[RESTAURANT_ID_SEQ]
         casier = CASIER[RESTAURANT_ID_SEQ]
         for i in range(random.randint(1, 2)):
-            id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "MANAGER")
+            id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "MANAGER", BASE_SALARY_MANAGER, MAX_BONUS_MANAGER)
             autorizat_sa_angajeze = int(i == 0)
             sql_code += f"INSERT INTO MANAGER (id_angajat, autorizat_sa_angajeze) VALUES ({id_angajat}, {autorizat_sa_angajeze});\n"
             if autorizat_sa_angajeze == 1:
                 manager.append(id_angajat)
         casa_de_marcat = 0
         for i in range (random.randint(1, 3)):
-            id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "CASIER")
+            id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "CASIER", BASE_SALARY_CASIER, MAX_BONUS_CASIER)
             nr_casa_de_marcat = "NULL"
             if i == 0 or random.choice([False, True, True]):
                 casa_de_marcat += 1
@@ -58,7 +76,7 @@ def main():
                 casier.append(id_angajat)
             sql_code += f"INSERT INTO CASIER (id_angajat, nr_casa_de_marcat) VALUES ({id_angajat}, {nr_casa_de_marcat});\n"
         for _ in range (random.randint(1, 1)):
-            id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "BUCATAR")
+            id_angajat = insert_random_employee(RESTAURANT_ID_SEQ, manager, "BUCATAR", BASE_SALARY_BUCATAR, MAX_BONUS_BUCATAR)
             data_antrenament_de_siguranta = random.choice([start_date, "NULL"])
             sql_code += f"INSERT INTO BUCATAR (id_angajat, data_antrenament_de_siguranta) VALUES ({id_angajat}, {data_antrenament_de_siguranta});\n"
 
@@ -81,7 +99,7 @@ def main():
         for c in CASIER[i]:
             for _ in range(random.randint(1, 10)):
                 random_comanda(i, c)
-    TABELE = ['ORAS', 'RESTAURANT', 'JOB_are_SALARIU', 'ANGAJAT', 'CASIER', 'BUCATAR', 'MANAGER', 'INGREDIENT', 'RETETA', 'ALERGIE', 'COMANDA', 'LIVRARE', 'INGREDIENT_provoaca_ALERGIE', 'RETETA_contine_INGREDIENT', 'COMANDA_include_RETETA']
+    TABELE = ['ORAS', 'RESTAURANT', 'JOB', 'ANGAJAT', 'CASIER', 'BUCATAR', 'MANAGER', 'INGREDIENT', 'RETETA', 'ALERGIE', 'COMANDA', 'LIVRARE', 'INGREDIENT_provoaca_ALERGIE', 'RETETA_contine_INGREDIENT', 'COMANDA_include_RETETA']
     for table in TABELE:
         sql_code += f"SELECT COUNT(*) FROM {table};\n"
 

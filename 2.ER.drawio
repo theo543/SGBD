@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-10-22T19:58:50.997Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="tu5Gcc4UHGx41wMs_b0n" version="22.0.3" type="device">
+<mxfile host="Electron" modified="2023-11-29T07:42:05.418Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="sfwDO4J1OOOI8h_JbOZm" version="22.1.2" type="device">
   <diagram name="Page-1" id="K7GGyE9mfa9EHH289KWn">
-    <mxGraphModel dx="1658" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1418" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -16,7 +16,7 @@
         <mxCell id="R7dfJEu_5J_XWcmGC57w-10" value="&lt;div&gt;MANAGER&lt;/div&gt;&lt;div&gt;autorizat_sa_&lt;/div&gt;&lt;div&gt;angajeze&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="260" y="404" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="R7dfJEu_5J_XWcmGC57w-13" value="&lt;div&gt;ANGAJAT&lt;/div&gt;&lt;div&gt;id_angajat#&lt;/div&gt;&lt;div&gt;job_cod&lt;/div&gt;&lt;div&gt;nume&lt;/div&gt;&lt;div&gt;data_angajare&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="R7dfJEu_5J_XWcmGC57w-13" value="&lt;div&gt;ANGAJAT&lt;/div&gt;&lt;div&gt;id_angajat#&lt;/div&gt;&lt;div&gt;nume&lt;/div&gt;&lt;div&gt;data_angajare&lt;/div&gt;&lt;div&gt;salariu&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="50" y="234" width="60" height="220" as="geometry" />
         </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-1" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="R7dfJEu_5J_XWcmGC57w-8" edge="1">
@@ -238,6 +238,22 @@
           <mxGeometry x="0.0248" y="1" relative="1" as="geometry">
             <mxPoint x="21" as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="DnzAXwiuiJMwNkebzDSv-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="DnzAXwiuiJMwNkebzDSv-1" target="R7dfJEu_5J_XWcmGC57w-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DnzAXwiuiJMwNkebzDSv-3" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="DnzAXwiuiJMwNkebzDSv-2" vertex="1" connectable="0">
+          <mxGeometry x="-0.6216" y="-2" relative="1" as="geometry">
+            <mxPoint x="7" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DnzAXwiuiJMwNkebzDSv-4" value="M(0)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="DnzAXwiuiJMwNkebzDSv-2" vertex="1" connectable="0">
+          <mxGeometry x="0.6757" relative="1" as="geometry">
+            <mxPoint x="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DnzAXwiuiJMwNkebzDSv-1" value="JOB&lt;br&gt;job_cod#&lt;br&gt;salariu_baza&lt;br&gt;bonus_maxim&lt;br&gt;titlu_job" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="150" y="60" width="120" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

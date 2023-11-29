@@ -33,7 +33,7 @@ BEGIN
     -- insereaza suficiente date pentru a cauza o exceptie, pentru a testa daca e prinsa corect
     FOR v_index IN 1..100
     LOOP
-        INSERT INTO ANGAJAT (ID_RESTAURANT, ID_ANGAJATOR, JOB_COD, NUME, DATA_ANGAJARE) VALUES (1, 13, 'CASIER', 'test peste 10 subordonati - '||v_index, SYSDATE)
+        INSERT INTO ANGAJAT (ID_RESTAURANT, ID_ANGAJATOR, JOB_COD, NUME, DATA_ANGAJARE, SALARIU) VALUES (1, 13, 'CASIER', 'test peste 10 subordonati - '||v_index, SYSDATE, (SELECT salariu_baza FROM JOB WHERE job_cod = 'CASIER'))
         RETURNING ID_ANGAJAT INTO v_ang_id;
         INSERT INTO CASIER (ID_ANGAJAT) VALUES (v_ang_id);
     END LOOP;

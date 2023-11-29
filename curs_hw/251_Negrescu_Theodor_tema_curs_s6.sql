@@ -9,8 +9,6 @@ DECLARE
     CURSOR c_salariu_total (id_rest ANGAJAT.id_restaurant%TYPE)
     IS
         SELECT SUM(salariu) FROM angajat
-        JOIN JOB_ARE_SALARIU
-        USING (job_cod)
         WHERE id_restaurant = id_rest;
     CURSOR c_max_cnt
     IS
