@@ -55,3 +55,19 @@ Tratați erorile care pot să apară la apelare. Testați.
 DEADLINE 4.12.2023, ora 10
 
 1. Definiți un pachet care să conțină obiectele definite în cadrul temelor de curs atribuite pe 30.10.2023, 6.11.2023 si 13.11.2023. Apelați subprogramele din pachet.
+
+*sau 
+Pachet care sa contina tip de date colectie pe mai multe niveluri, cursor dinamic, subprogram care sa afiseze arta ASCII cu brad impodobit, Mos Craciun, oameni de zapada, reni, etc.
+Tratati erorile si apelați subprogramul din pachet.
+
+Exemple:
+
+https://www.asciiart.eu/image-to-ascii
+
+https://www.asciiart.eu/text-to-ascii-art
+
+https://www.asciiart.eu/holiday-and-events/christmas/trees
+
+https://www.asciiart.eu/holiday-and-events/christmas/santa-claus
+
+https://asciiart.cc/t-10657-1/Santa%20Claus

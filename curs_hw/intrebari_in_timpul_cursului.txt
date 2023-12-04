@@ -83,3 +83,10 @@ SELECT ABS(-1), seria25.ABS(-1)
 FROM DUAL;
 
 10:35
+
+=========================
+4.12.2023 Curs 10 - Set 9
+
+Întrebare: Se poate specifica ordinea de execuție a trigger-ilor de acelaşi tip definiţi pentru aceeași comandă? Argumentati daca se poate.
+
+11:15

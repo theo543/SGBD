@@ -37,3 +37,8 @@ Exercitiul E7 (PARTIAL, doar exemplul 2) din fisierul Laborator4_PLSQL.pdf.
 DEADLINE 4.12.23, ora 12
 
 Exercitiul E7 (PARTIAL, doar exemplul 4) din fisierul Laborator4_PLSQL.pdf.
+
+4.12.23 (S10) 0.25p
+DEADLINE 11.12.23, ora 12
+
+Exercitiul E2 din fisierul Laborator5_PLSQL.pdf.
