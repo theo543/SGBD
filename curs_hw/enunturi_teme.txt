@@ -71,3 +71,20 @@ https://www.asciiart.eu/holiday-and-events/christmas/trees
 https://www.asciiart.eu/holiday-and-events/christmas/santa-claus
 
 https://asciiart.cc/t-10657-1/Santa%20Claus
+=========================
+11.12.2023 - Tema 6, saptamana 11 (0.3p)
+DEADLINE 18.12.2023, ora 10
+
+1. Definiti un tabel de LOG-uri in care sa puteti adăuga operațiile DML efectuate asupra unui tabel asociativ
+din schema companie comercială. 
+În acest tabel vor fi stocate ID-ul, vechea valoare, noua valoare, tipul operației, 
+momentul în care s-a executat operația și de către cine (userul curent autentificat - 
+SELECT USER FROM dual).
+Implementați un trigger care populează acest tabel cu informațiile menționate mai sus.
+
+2. Implementați cu ajutorul unui trigger următoarea restricție: 
+un client poate beneficia într-un an de cel mult 3 perioade cu prețuri preferențiale.
+
+3. Pe un tabel dependent din schema companie comercială implementați cu ajutorul unui trigger 
+o constrângere de integritate la alegere. 
+Observație: trebuie să apară explicit pe ce tabel și care este constrangerea implementată.
