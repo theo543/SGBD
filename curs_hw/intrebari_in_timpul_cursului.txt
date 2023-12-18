@@ -90,3 +90,18 @@ FROM DUAL;
 Întrebare: Se poate specifica ordinea de execuție a trigger-ilor de acelaşi tip definiţi pentru aceeași comandă? Argumentati daca se poate.
 
 11:15
+
+=========================
+11.12.2023 Curs 11 - Set 10
+
+1. Cate tipuri de exceptii de executie sunt in Oracle PLSQL? Enumerati.
+2. Dati variante de identificare a comenzii SELECT (daca sunt mai multe care au declansat aceeasi exceptie) care a declansat o anumita eroare.
+11:52
+
+=========================
+18.12.2023 Curs 12 - Set 11
+
+1. Prezentati relatiile dintre baza de date, spaţii tabel şi fişierele de date (indicati tipurile de fisiere, segmente). Dati definitii.
+2. Care este spatiul tabel ce contine dictionarul datelor?
+
+11:40

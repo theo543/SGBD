@@ -47,3 +47,8 @@ Exercitiul E2 din fisierul Laborator5_PLSQL.pdf.
 DEADLINE 18.12.23, ora 12
 
 Exercitiul E7 din fisierul Laborator6_PLSQL.pdf.
+
+18.12.23 (S12) 0.25p
+DEADLINE 8.01.24, ora 12
+
+Exercitiul E7 din fisierul Laborator7_PLSQL.pdf.

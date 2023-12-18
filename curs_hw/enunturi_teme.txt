@@ -88,3 +88,13 @@ un client poate beneficia într-un an de cel mult 3 perioade cu prețuri prefer
 3. Pe un tabel dependent din schema companie comercială implementați cu ajutorul unui trigger 
 o constrângere de integritate la alegere. 
 Observație: trebuie să apară explicit pe ce tabel și care este constrangerea implementată.
+
+================================
+18.12.2023 - Tema 7 saptamana 12 (0.2p)
+DEADLINE 8.01.2024, ora 10
+
+1. Să se ilustreze printr-un exemplu de program PL/SQL multi-bloc modul de propagare al excepțiilor. 
+Vor fi ilustrate cel putin situațiile în care o excepție este tratată sau nu în blocul curent și în care controlul programului va fi transmis blocului următor din secvență sau blocului exterior.
+
+2. Să se ilustreze prin exemple folosirea instrucțiunii RAISE pentru a ridica atât o excepție predefinită cât și o excepție definită de utilizator. 
+În cazul excepțiilor predefinite, să se explice cum anume folosirea instrucțiunii RAISE schimbă funcționalitatea programului (față de cazul când această instrucțiune nu există).
