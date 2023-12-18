@@ -84,3 +84,46 @@ SELECT * FROM produse_au_caracteristici_log;
 DROP TRIGGER produse_au_caracteristici_log_trigger;
 DROP TABLE produse_au_caracteristici_log;
 DROP SEQUENCE id_modificare_seq;
+
+/*
+2. Implementați cu ajutorul unui trigger următoarea restricție:
+un client poate beneficia într-un an de cel mult 3 perioade cu prețuri preferențiale.
+*/
+
+CREATE OR REPLACE TRIGGER max_3_pret_preferential_pe_an_trigger
+    FOR INSERT OR UPDATE ON clienti_au_pret_preferential
+    COMPOUND TRIGGER
+
+    preturi NUMBER(10);
+
+    BEFORE STATEMENT IS
+    BEGIN
+        -- Necesar pentru a funcționa cu multiple sesiuni.
+        LOCK TABLE clienti_au_pret_preferential IN EXCLUSIVE MODE;
+    END BEFORE STATEMENT;
+
+    BEFORE EACH ROW IS
+    BEGIN
+        SELECT COUNT(*) INTO preturi
+        FROM clienti_au_pret_preferential
+        WHERE id_client_j = :new.id_client_j
+        AND EXTRACT(YEAR FROM data_in) <= EXTRACT(YEAR FROM :new.data_sf)
+        AND EXTRACT(YEAR FROM :new.data_in) <= EXTRACT(YEAR FROM data_sf);
+        IF preturi >= 3 THEN
+            RAISE_APPLICATION_ERROR(-20001, 'Clientul nu poate avea mai mult de 3 prețuri preferențiale pe an!');
+        END IF;
+    END BEFORE EACH ROW;
+END;
+
+-- din sesiunea 1
+INSERT INTO clienti_au_pret_preferential (id_pret_pref, id_categorie, id_client_j, discount, data_in, data_sf)
+VALUES (11, 1, 10, 50, SYSDATE, SYSDATE);
+INSERT INTO clienti_au_pret_preferential (id_pret_pref, id_categorie, id_client_j, discount, data_in, data_sf)
+VALUES (12, 1, 10, 50, SYSDATE, SYSDATE);
+INSERT INTO clienti_au_pret_preferential (id_pret_pref, id_categorie, id_client_j, discount, data_in, data_sf)
+VALUES (13, 1, 10, 50, SYSDATE, SYSDATE);
+-- din sesiunea 2
+INSERT INTO clienti_au_pret_preferential (id_pret_pref, id_categorie, id_client_j, discount, data_in, data_sf)
+VALUES (14, 1, 10, 50, SYSDATE, SYSDATE);
+
+DROP TRIGGER max_3_pret_preferential_pe_an_trigger;
