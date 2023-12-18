@@ -196,3 +196,139 @@ SELECT * FROM error_sqrt;
 DROP TABLE error_sqrt;
 DROP SEQUENCE seq_error_sqrt;
 DROP PACKAGE pkg_sqrt;
+
+/*
+E2. Să se creeze un bloc PL/SQL prin care să se afişeze numele salariatului (din tabelul emp_***)
+care câştigă un anumit salariu. Valoarea salariului se introduce de la tastatură. Se va testa
+programul pentru următoarele valori: 500, 3000 şi 5000.
+Dacă interogarea  nu  întoarce  nicio linie, atunci să se trateze excepţia şi să se afişeze mesajul
+“nu exista salariati care sa castige acest salariu ”.  Dacă interogarea  întoarce  o singură linie,
+atunci să se afişeze numele salariatului. Dacă interogarea întoarce mai multe linii, atunci să se
+afişeze mesajul “exista mai mulţi salariati care castiga acest salariu”.
+*/
+
+DECLARE
+    v_query_salary employees.salary%TYPE := &p_query_salary;
+    v_employee_name VARCHAR2(255);
+BEGIN
+    SELECT first_name || ' ' || last_name
+    INTO v_employee_name
+    FROM employees
+    WHERE salary = v_query_salary;
+    dbms_output.put_line(v_employee_name);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        dbms_output.put_line('nu exista salariati care sa castige acest salariu: '||v_query_salary);
+    WHEN TOO_MANY_ROWS THEN
+        dbms_output.put_line('exista mai mulţi salariati care castiga acest salariu: '||v_query_salary);
+END;
+
+/*
+E3. Să se creeze un bloc PL/SQL  care tratează eroarea apărută în cazul în care se modifică codul
+unui departament în care lucrează angajaţi.
+*/
+
+DECLARE
+    child_record_found EXCEPTION;
+    PRAGMA EXCEPTION_INIT (child_record_found, -02292);
+BEGIN
+    UPDATE departments
+    SET department_id = 1
+    WHERE department_id = 10;
+EXCEPTION
+    WHEN child_record_found THEN
+        dbms_output.PUT_LINE('Nu se poate schimba codul deoarece există angajați în acest departament.');
+END;
+
+/*
+E4. Să se creeze un   bloc  PL/SQL  prin care se afişează numele departamentului 10 dacă numărul
+său de angajaţi este într-un interval dat de la tastatură. Să se trateze cazul în care departamentul
+nu îndeplineşte această condiţie.
+*/
+
+DECLARE
+    v_lower BINARY_INTEGER := &p_lower;
+    v_upper BINARY_INTEGER := &p_upper;
+    v_dname VARCHAR2(255);
+BEGIN
+    SELECT department_name
+    INTO v_dname
+    FROM departments
+    JOIN employees
+    USING (department_id)
+    WHERE department_id = 10
+    GROUP BY department_id, department_name
+    HAVING COUNT(employee_id) BETWEEN v_lower AND v_upper;
+    dbms_output.PUT_LINE(v_dname);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        dbms_output.PUT_LINE('Departamentul 10 nu are între '||v_lower||' și '||v_upper||' angajați.');
+END;
+
+/*
+E5. Să se modifice numele unui departament al cărui cod este dat de la tastatură. Să se trateze cazul
+în care nu există acel departament. Tratarea excepţie se va face în secţiunea executabilă.
+*/
+
+DECLARE
+    v_dep BINARY_INTEGER := &p_dep;
+    v_new_name VARCHAR2(255) := &p_new_name;
+BEGIN
+    UPDATE departments
+    SET department_name = v_new_name
+    WHERE department_id = v_dep;
+    IF SQL%ROWCOUNT = 0 THEN
+        dbms_output.PUT_LINE('Nu există departamentul '||v_dep||'.');
+    END IF;
+END;
+
+/*
+E6. Să se creeze un bloc PL/SQL  care afişează numele departamentului ce se află într-o anumită
+locaţie şi numele departamentului ce are un anumit cod (se vor folosi două comenzi SELECT).
+Să se trateze excepţia NO_DATA_FOUND şi să se afişeze care dintre comenzi a determinat
+eroarea.  Să se rezolve problema în două moduri.
+*/
+
+DECLARE
+    v_which VARCHAR2(255) := 'locație';
+    v_name  VARCHAR2(255);
+BEGIN
+    SELECT department_name
+    INTO v_name
+    FROM departments
+    WHERE location_id = 1700 AND ROWNUM = 1;
+    dbms_output.put_line(v_name);
+    v_which := 'id';
+    SELECT department_name
+    INTO v_name
+    FROM departments
+    WHERE department_id = 1 AND ROWNUM = 1;
+    dbms_output.put_line(v_name);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        dbms_output.PUT_LINE('Eroare la cererea pentru '||v_which);
+END;
+
+DECLARE
+    v_name  VARCHAR2(255);
+BEGIN
+    BEGIN
+        SELECT department_name
+        INTO v_name
+        FROM departments
+        WHERE location_id = 1700 AND ROWNUM = 1;
+        dbms_output.put_line(v_name);
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+        dbms_output.PUT_LINE('Eroare la cererea pentru locație');
+    END;
+    BEGIN
+        SELECT department_name
+        INTO v_name
+        FROM departments
+        WHERE department_id = 1 AND ROWNUM = 1;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+        dbms_output.PUT_LINE('Eroare la cererea pentru id');
+    END;
+END;
