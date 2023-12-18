@@ -127,3 +127,48 @@ INSERT INTO clienti_au_pret_preferential (id_pret_pref, id_categorie, id_client_
 VALUES (14, 1, 10, 50, SYSDATE, SYSDATE);
 
 DROP TRIGGER max_3_pret_preferential_pe_an_trigger;
+
+/*
+3. Pe un tabel dependent din schema companie comercială implementați cu ajutorul unui trigger 
+o constrângere de integritate la alegere. 
+Observație: trebuie să apară explicit pe ce tabel și care este constrangerea implementată.
+
+Tabelul: clienti_persoane_fizice
+Nu poate apărea în tabelul clienti_au_pret_preferential.
+
+Nu mi-am dat seama cum să fac constrângere multi-tabel cu un trigger,
+așa că am implementat-o în SQL declarativ folosind un materialized view.
+*/
+
+CREATE MATERIALIZED VIEW LOG ON clienti_persoane_fizice
+WITH ROWID (id_client_f)
+INCLUDING NEW VALUES;
+
+CREATE MATERIALIZED VIEW LOG ON clienti_au_pret_preferential
+WITH ROWID (id_client_j)
+INCLUDING NEW VALUES;
+
+CREATE MATERIALIZED VIEW erori_clienti_pf
+REFRESH FAST
+ON COMMIT
+AS
+    SELECT COUNT(*) nr_erori FROM clienti_persoane_fizice
+    JOIN clienti_au_pret_preferential
+    ON clienti_persoane_fizice.id_client_f = clienti_au_pret_preferential.id_client_j;
+
+ALTER TABLE erori_clienti_pf
+ADD CONSTRAINT nu_poate_exista_client_pf_in_tabelul_pret_preferential CHECK (nr_erori = 0);
+
+-- din sesiunea 1
+INSERT INTO clienti_persoane_fizice (id_client_f, nume, prenume, cnp)
+VALUES (10000, 'mr. test', 'test', 1);
+
+-- din sesiunea 2
+INSERT INTO clienti_au_pret_preferential (id_pret_pref, id_categorie, id_client_j, discount, data_in, data_sf)
+VALUES (10000, 10000, 10000, 50, SYSDATE, SYSDATE);
+
+DELETE FROM clienti_persoane_fizice WHERE id_client_f = 10000;
+DELETE FROM clienti_au_pret_preferential WHERE id_client_j = 10000;
+DROP MATERIALIZED VIEW erori_clienti_pf;
+DROP MATERIALIZED VIEW LOG ON clienti_au_pret_preferential;
+DROP MATERIALIZED VIEW LOG ON clienti_persoane_fizice;
