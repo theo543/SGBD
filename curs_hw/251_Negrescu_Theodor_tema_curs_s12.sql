@@ -25,6 +25,7 @@ EXCEPTION
     WHEN ZERO_DIVIDE THEN
         dbms_output.PUT_LINE('Excepțiile se progagă până la primul handler potrivit, indiferent de adâncimea imbricării.');
 END;
+/
 
 BEGIN
     DECLARE
@@ -56,6 +57,7 @@ BEGIN
             dbms_output.PUT_LINE('Excepția predefinită TOO_MANY_ROWS este ridicată când un SELECT INTO returnează multiple rânduri.');
     END;
 END;
+/
 
 /*
  2. Să se ilustreze prin exemple folosirea instrucțiunii RAISE pentru a ridica atât o excepție predefinită cât și o excepție definită de utilizator.
@@ -68,6 +70,7 @@ EXCEPTION
     WHEN OTHERS THEN
         dbms_output.PUT_LINE('Orice se prinde cu WHEN OTHERS, chiar și un cod care nu are o excepție asociată. SQLCODE = '||SQLCODE||', SQLERRM = '||SQLERRM);
 END;
+/
 
 DECLARE
     custom_exception EXCEPTION;
@@ -148,3 +151,4 @@ BEGIN
             dbms_output.PUT_LINE('SQLCODE: '||SQLCODE||' SQLERRM:'||SQLERRM);
     END;
 END;
+/
