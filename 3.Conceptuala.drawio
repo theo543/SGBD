@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-11-29T07:42:06.775Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="eKzs0kRC6tkqwn057Go7" version="22.1.2" type="device">
+<mxfile host="Electron" modified="2024-01-08T11:31:42.814Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="OCUOcIBPEhGvU37N3AGL" version="22.1.16" type="device">
   <diagram name="Page-1" id="K7GGyE9mfa9EHH289KWn">
-    <mxGraphModel dx="1418" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -28,6 +28,11 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="r35JMGi5M-vCQOAK_Ai3-1" value="ISA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-1">
+          <mxGeometry x="-0.3051" y="-1" relative="1" as="geometry">
+            <mxPoint x="1" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-3" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="250" y="325" as="sourcePoint" />
@@ -37,6 +42,11 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="r35JMGi5M-vCQOAK_Ai3-3" value="ISA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-3">
+          <mxGeometry x="-0.6777" y="-3" relative="1" as="geometry">
+            <mxPoint y="-6" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-5" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="R7dfJEu_5J_XWcmGC57w-10" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="250" y="415" as="sourcePoint" />
@@ -44,6 +54,11 @@
             <Array as="points">
               <mxPoint x="180" y="417" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r35JMGi5M-vCQOAK_Ai3-4" value="ISA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-5">
+          <mxGeometry x="-0.4182" y="-3" relative="1" as="geometry">
+            <mxPoint x="-7" y="-6" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-7" value="&lt;div&gt;RESTAURANT&lt;/div&gt;&lt;div&gt;id_restaurant#&lt;/div&gt;&lt;div&gt;data_deschidere&lt;br&gt;&lt;/div&gt;&lt;div&gt;id_oras&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -209,6 +224,11 @@
             <mxPoint x="809.76" y="160" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="r35JMGi5M-vCQOAK_Ai3-5" value="ISA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="df_7gGYzq2t7CDCpT4Jm-245">
+          <mxGeometry x="0.4568" y="-1" relative="1" as="geometry">
+            <mxPoint x="11" y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="LTqqhIScXa48sC5BbTXQ-5" value="&lt;b&gt;X&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="710" y="351" width="30" height="30" as="geometry" />
         </mxCell>
@@ -217,6 +237,24 @@
         </mxCell>
         <mxCell id="df_7gGYzq2t7CDCpT4Jm-247" value="&lt;u&gt;&lt;b&gt;X&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="765" y="243" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3ISHRuHoISzeSskiQnSb-1" value="angajatul are job" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="250" y="177" as="geometry" />
+        </mxCell>
+        <mxCell id="3ISHRuHoISzeSskiQnSb-2" value="casierul a procesat comanda" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="509" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="3ISHRuHoISzeSskiQnSb-3" value="restaurantul este in oras" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="580" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="3ISHRuHoISzeSskiQnSb-4" value="comanda a fost facuta la restaurant" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-30;" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="644" y="516" as="geometry" />
+        </mxCell>
+        <mxCell id="3ISHRuHoISzeSskiQnSb-9" value="angajatul lucreaza la restaurant" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="310" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="3ISHRuHoISzeSskiQnSb-10" value="angajatul a fost angajat de manager" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="90" y="531" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

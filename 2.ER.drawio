@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-11-29T07:42:05.418Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="sfwDO4J1OOOI8h_JbOZm" version="22.1.2" type="device">
+<mxfile host="Electron" modified="2024-01-08T09:47:48.498Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="LPoqpWaIDhz8iZobF-yH" version="22.1.16" type="device">
   <diagram name="Page-1" id="K7GGyE9mfa9EHH289KWn">
     <mxGraphModel dx="1418" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -83,6 +83,11 @@
             <mxPoint x="-216" y="-8" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="HXiGwZHusx9Xv7mfiOax-5" value="casierul a procesat comanda" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-10">
+          <mxGeometry x="0.3615" y="-3" relative="1" as="geometry">
+            <mxPoint x="47" y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-13" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="615" y="574" as="sourcePoint" />
@@ -100,6 +105,11 @@
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-15" value="M(0)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="DwRfLZ-1oQ1YcIXO67qD-13" vertex="1" connectable="0">
           <mxGeometry x="-0.76" y="-1" relative="1" as="geometry">
             <mxPoint x="68" y="-181" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HXiGwZHusx9Xv7mfiOax-7" value="comanda a fost facuta la restaurant" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-30;" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-13">
+          <mxGeometry x="-0.729" y="1" relative="1" as="geometry">
+            <mxPoint x="-7" y="-43" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-16" value="&lt;div&gt;RETETA&lt;/div&gt;&lt;div&gt;id_reteta#&lt;/div&gt;&lt;div&gt;nume&lt;/div&gt;&lt;div&gt;pret&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -124,6 +134,11 @@
             <mxPoint x="5" y="2" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="HXiGwZHusx9Xv7mfiOax-3" value="restaurantul este in oras" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-26">
+          <mxGeometry x="-0.1818" relative="1" as="geometry">
+            <mxPoint x="70" y="-6" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-41" value="&lt;div&gt;INGREDIENT&lt;/div&gt;&lt;div&gt;id_ingredient#&lt;/div&gt;&lt;div&gt;nume&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="303" y="734" width="120" height="60" as="geometry" />
         </mxCell>
@@ -143,6 +158,11 @@
             <mxPoint y="11" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="HXiGwZHusx9Xv7mfiOax-9" value="reteta include ingredient" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-46">
+          <mxGeometry x="-0.403" relative="1" as="geometry">
+            <mxPoint x="47" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-49" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="425" y="574" as="sourcePoint" />
@@ -160,6 +180,11 @@
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-51" value="M" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="DwRfLZ-1oQ1YcIXO67qD-49" vertex="1" connectable="0">
           <mxGeometry x="0.8857" y="-2" relative="1" as="geometry">
             <mxPoint x="5" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HXiGwZHusx9Xv7mfiOax-2" value="angajatul lucreaza la restaurant" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-49">
+          <mxGeometry x="-0.0921" y="3" relative="1" as="geometry">
+            <mxPoint x="28" y="13" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-52" value="" style="endArrow=none;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="1" target="R7dfJEu_5J_XWcmGC57w-11" edge="1">
@@ -182,6 +207,11 @@
             <mxPoint x="-14" y="-1" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="HXiGwZHusx9Xv7mfiOax-1" value="angajatul a fost angajat de manager" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-52">
+          <mxGeometry x="-0.0118" y="2" relative="1" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-55" value="&lt;div&gt;ALERGIE&lt;/div&gt;&lt;div&gt;id_alergie#&lt;/div&gt;&lt;div&gt;nume&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="50" y="734" width="120" height="60" as="geometry" />
         </mxCell>
@@ -199,6 +229,11 @@
         <mxCell id="DwRfLZ-1oQ1YcIXO67qD-58" value="M(0)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="DwRfLZ-1oQ1YcIXO67qD-56" vertex="1" connectable="0">
           <mxGeometry x="0.68" y="-1" relative="1" as="geometry">
             <mxPoint x="-8" y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HXiGwZHusx9Xv7mfiOax-10" value="ingredient provoaca alergie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DwRfLZ-1oQ1YcIXO67qD-56">
+          <mxGeometry x="0.3233" y="-3" relative="1" as="geometry">
+            <mxPoint x="25" y="-41" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="2Y1EmJNbw8-3XTTrJ1v6-1" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="DwRfLZ-1oQ1YcIXO67qD-16" edge="1">
@@ -220,6 +255,11 @@
         <mxCell id="4ojdyd7E8nVtsmsZzaIg-1" value="nr" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="2Y1EmJNbw8-3XTTrJ1v6-1" vertex="1" connectable="0">
           <mxGeometry x="-0.0057" y="-4" relative="1" as="geometry">
             <mxPoint x="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HXiGwZHusx9Xv7mfiOax-8" value="comanda include reteta" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="2Y1EmJNbw8-3XTTrJ1v6-1">
+          <mxGeometry x="0.2343" y="-2" relative="1" as="geometry">
+            <mxPoint x="-63" y="122" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="2Y1EmJNbw8-3XTTrJ1v6-3" value="&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;COMANDA&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;id_comanda#&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;data&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -250,6 +290,11 @@
         <mxCell id="DnzAXwiuiJMwNkebzDSv-4" value="M(0)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="DnzAXwiuiJMwNkebzDSv-2" vertex="1" connectable="0">
           <mxGeometry x="0.6757" relative="1" as="geometry">
             <mxPoint x="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HXiGwZHusx9Xv7mfiOax-4" value="angajatul are job" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DnzAXwiuiJMwNkebzDSv-2">
+          <mxGeometry y="2" relative="1" as="geometry">
+            <mxPoint x="48" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="DnzAXwiuiJMwNkebzDSv-1" value="JOB&lt;br&gt;job_cod#&lt;br&gt;salariu_baza&lt;br&gt;bonus_maxim&lt;br&gt;titlu_job" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
