@@ -1,0 +1,6 @@
+Pentru triggeri, important:
+Trebuie dat un exemplu de eroarea mutating, apoi se explică rezolvarea erorii și se arată triggerul reparat (i.e. prin trigger compus, sau două in pachet)
+
+Restul cerințelor nu necesită aratarea unei soluții eronate înainte de a arăta soluția corectă.
+
+Exemplu de flux de acțiuni integrate: se calculează niște statistici pe baza de date de lanț de pizzeri, apoi se generează un raport din acele statistici.
