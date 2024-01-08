@@ -105,3 +105,19 @@ FROM DUAL;
 2. Care este spatiul tabel ce contine dictionarul datelor?
 
 11:40
+=========================
+8.01.2024 Curs 13 - Set 12
+
+1. Descrieti modalitatea de functionare a zonei globale de memorie (SGA) in contextul dependentelor.
+
+11:15
+
+
+
+
+
+
+
+
+
+
