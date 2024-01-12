@@ -138,6 +138,7 @@ CREATE OR REPLACE PACKAGE BODY rapoarte AS
                 IF p_raport(i).probleme.COUNT = 0 THEN
                     putln('<li>Nu are probleme</li>');
                     i := p_raport.NEXT(i);
+                    putln('</ul>');
                     CONTINUE;
                 END IF;
                 FOR j IN p_raport(i).probleme.FIRST..p_raport(i).probleme.LAST
@@ -181,7 +182,7 @@ BEGIN
     ELSE
         handle := UTL_FILE.FOPEN('RAPORT', file_name, 'w');
     END IF;
-    UTL_FILE.PUT(handle, rapoarte.quick_generate_raport(TRUE, TRUE));
+    UTL_FILE.PUT(handle, rapoarte.quick_generate_raport(enable_1, enable_2));
     UTL_FILE.FCLOSE(handle);
 END;
 
@@ -191,3 +192,20 @@ BEGIN
     gen_raport_to_file('test_raport_doar_2.html', FALSE, TRUE);
     gen_raport_to_file('test_raport_doar_1.html', TRUE, FALSE);
 END;
+
+/*
+nu am putut face asta sa mearga
+BEGIN
+    DBMS_SCHEDULER.CREATE_JOB(
+        job_name => 'gen_raport',
+        job_type => 'PLSQL_BLOCK',
+        job_action => 'BEGIN gen_raport_to_file(NULL); END;',
+        start_date => SYSTIMESTAMP,
+        repeat_interval => 'FREQ=SECONDLY;INTERVAL=1',
+        enabled => TRUE
+    );
+    DBMS_OUTPUT.PUT_LINE('Press enter to stop the job');
+    DBMS_SCHEDULER.STOP_JOB('gen_raport');
+END;
+/
+*/
