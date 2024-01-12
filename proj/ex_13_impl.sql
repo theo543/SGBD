@@ -449,6 +449,8 @@ CREATE OR REPLACE PACKAGE BODY pizza IS
     PROCEDURE ruleaza_teste_ex9_1
     IS
     BEGIN
+        pizza.generate_meniu('meniu_pachet.html');
+        dbms_output.PUT_LINE('meniu_pachet.html generat cu succes.');
         BEGIN
             pizza.generate_meniu('/');
         EXCEPTION
