@@ -25,18 +25,18 @@ def main():
         nonlocal ANGAJAT_ID_SEQ
         nonlocal sql_code
         id_angajator = "NULL"
-        if(len(manager) != 0): id_angajator = random.choice(manager)
+        if len(manager) != 0:
+            id_angajator = random.choice(manager)
         ANGAJAT_ID_SEQ += 1
-        emp_salary = base_salary
-        salary_kind = salary_rng.randint(1, 5)
+        salary_kind = salary_rng.randint(1, 10)
+        salary_in_bounds = base_salary + round((salary_rng.random() * 0.5 + salary_rng.random() * 0.5) * bonus_max)
         match salary_kind:
-            # TODO: add some values outside the allowed range, and code to warn/generate a report of disallowed salaries.
-            # case 1:
-            #     emp_salary = base_salary * 0.95
-            # case 2:
-            #     emp_salary = base_salary + bonus_max * 1.05
+            case 1:
+                emp_salary = base_salary * 0.95
+            case 2:
+                emp_salary = base_salary + bonus_max * 1.05
             case _:
-                emp_salary = base_salary + round((salary_rng.random() * 0.5 + salary_rng.random() * 0.5) * bonus_max)
+                emp_salary = salary_in_bounds
         sql_code += f"INSERT INTO ANGAJAT (id_restaurant, id_angajator, job_cod, nume, data_angajare, salariu) VALUES ({id_restaurant}, {id_angajator}, '{job_cod}', '{random.choice(nume)} {random.choice(prenume)}', {start_date}, {emp_salary});\n"
         return ANGAJAT_ID_SEQ
 
