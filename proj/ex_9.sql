@@ -123,7 +123,6 @@ BEGIN
     -- nicio eroare
     generate_menu('meniu.html');
     dbms_output.PUT_LINE('meniu.html generat cu succes!');
-    -- invalid_filename
 END;
 /
 
