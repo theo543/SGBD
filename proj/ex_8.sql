@@ -5,7 +5,7 @@ Se vor raporta următoarele cazuri excepționale:
 - numele nu există
 - numele nu e unic (se vor preciza ID-urile angajaților găsiți)
 - angajatul nu e manager (se va preciza ce este)
-- managerul nu a angajat niciun casier (se va preciza dacă are autorizare și nu a angajat înca, sau nu are deloc)
+- managerul nu a angajat niciun casier
 */
 
 CREATE OR REPLACE FUNCTION gaseste_casierul_cel_mai_profitabil(nume_angajator VARCHAR2) RETURN angajat.id_angajat%TYPE
