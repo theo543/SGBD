@@ -209,3 +209,5 @@ BEGIN
 END;
 /
 */
+DROP PROCEDURE gen_raport_to_file;
+DROP PACKAGE rapoarte;
