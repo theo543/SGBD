@@ -192,4 +192,4 @@ ROLLBACK;
 
 
 
-DROP PROCEDURE gaseste_casierul_cel_mai_profitabil;
+DROP FUNCTION gaseste_casierul_cel_mai_profitabil;
