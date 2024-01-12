@@ -4,7 +4,6 @@ Acele tabele sunt:
 ALERGIE, INGREDIENT_provoaca_ALERGIE, INGREDIENT, RETETA_contine_INGREDIENT, RETETA, JOB
 Să se stocheze log-ul tuturor modificărilor la aceste tabele.
 Log-ul va include: username, nume tabel, data modificare, numar de raduri.
-Deoarece 
 */
 
 CREATE SEQUENCE id_modificari_anormale_seq START WITH 1 INCREMENT BY 1;
