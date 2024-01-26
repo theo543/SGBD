@@ -193,8 +193,6 @@ BEGIN
     gen_raport_to_file('test_raport_doar_1.html', TRUE, FALSE);
 END;
 
-/*
-nu am putut face asta sa mearga
 BEGIN
     DBMS_SCHEDULER.CREATE_JOB(
         job_name => 'gen_raport',
@@ -204,10 +202,10 @@ BEGIN
         repeat_interval => 'FREQ=SECONDLY;INTERVAL=1',
         enabled => TRUE
     );
-    DBMS_OUTPUT.PUT_LINE('Press enter to stop the job');
-    DBMS_SCHEDULER.STOP_JOB('gen_raport');
+    DBMS_SESSION.sleep(5);
+    DBMS_SCHEDULER.DROP_JOB('gen_raport');
 END;
 /
-*/
+
 DROP PROCEDURE gen_raport_to_file;
 DROP PACKAGE rapoarte;
