@@ -1,0 +1,10 @@
+*.sql linguist-language=PLSQL
+
+generate_data.sql linguist-generated
+
+# just code to create some DBs used from the class, and the generated data again for the project db
+db_create_scripts/*.sql linguist-vendored
+db_create_scripts/create_proiect.sql linguist-generated
+
+# just code from other files concatenated together
+251_*_cod.sql linguist-vendored
